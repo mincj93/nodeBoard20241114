@@ -13,7 +13,7 @@ app.engine('html', require('ejs').renderFile);
 
 // -------------------------------------------------
 // express 설정
-// app.use(express.static(__dirname + '../../../public'));
+app.use(express.static(__dirname + '../../public'));
 
 // -------------------------------------------------
 // 변수들
@@ -23,9 +23,20 @@ const mainPage = __dirname + '../../../front/main';
 // lg('__dirname =  ', __dirname);
 
 router.get('/about', (요청, 응답) => {
-    lg('aseaseg')
+    lg('/main/about')
     응답.render(path.join(mainPage, '/about'))
 })
+
+router.get('/contact', (요청, 응답) => {
+    lg('/main/contact')
+    응답.render(path.join(mainPage, '/contact'))
+})
+
+router.get('/post', (요청, 응답) => {
+    lg('/main/post')
+    응답.render(path.join(mainPage, '/post'))
+})
+
 
 
 module.exports = router;
