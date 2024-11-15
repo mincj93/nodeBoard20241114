@@ -3,6 +3,8 @@ const express = require('express');
 const path = require('path')
 const router = express.Router();
 
+const mysqlConn = require('../mysql/mysqlConn');
+
 // express 는 함수이므로, 반환값을 변수에 저장한다.
 const app = express();
 
@@ -37,6 +39,9 @@ router.get('/post', (요청, 응답) => {
     응답.render(path.join(mainPage, '/post'))
 })
 
-
+router.get('/getUsers', (요청, 응답) => {
+    let resutl = mysqlConn.test();
+    응답.render(path.join(mainPage, '/post'))
+})
 
 module.exports = router;
