@@ -1,9 +1,9 @@
 const mysql = require('mysql');
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'node',
-    password: 'node',
-    database: 'node'
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE
 });
 
 const lg = console.log;
@@ -23,5 +23,6 @@ mysqlConn.test = () => {
     connection.end();
 
 }
-
+// Client does not support authentication protocol requested by server; consider upgrading MySQL client 에러 발생시 하단 참고
+// https://1mini2.tistory.com/88
 module.exports = mysqlConn;

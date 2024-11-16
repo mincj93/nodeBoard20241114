@@ -1,0 +1,7 @@
+1. process.cwd()
+const mainPage = __dirname + '../../../front/main';
+위처럼 ../../../ 하다가 죽을 수도 있을 것 같아서 짧게하는 방법 찾아봄.
+
+process.cwd() 함수를 사용하면 node명령을 호출한 작업디렉터리의 절대경로를 준다.
+예시) C:\Users\Administrator\Desktop\P\nodeBoard
+
