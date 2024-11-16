@@ -5,6 +5,7 @@ const path = require('path')
 const router = express.Router();
 const dotenv = require("dotenv").config();
 const routerController = require('./server/routes/routeController.js');
+const { stringify } = require('querystring');
 
 const app = express();
 // -------------------------------------------------
@@ -27,7 +28,12 @@ const frontPath = path.resolve(process.cwd() + '/front');
 // -------------------------------------------------
 // API
 app.get('/', (req, res) => {
-    res.render(path.join(frontPath, '/index'), { myName: "민창준입니다" });
+    lg(path.resolve(process.cwd() + '/css'));
+    const data = {
+        navLoc: path.resolve(process.cwd() + '/front/common/nav.ejs'),
+        myName: "민창준입니다",
+    }
+    res.render(path.join(frontPath, '/index'), { data : data });
 })
 
 // 3000 포트로 서버 오픈
