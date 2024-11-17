@@ -1,6 +1,6 @@
 const mysql = require('mysql');
 const connection = mysql.createConnection({
-    HOST: "mariadb:3306",
+    HOST: "svc.sel4.cloudtype.app:32399",
     USER: "root",
     PASSWORD: "mariadb",
     DATABASE: "node",
