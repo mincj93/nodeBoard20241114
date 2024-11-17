@@ -43,7 +43,7 @@ router.get('/post', (요청, 응답) => {
     응답.render(path.join(mainPage, '/post'))
 })
 
-router.get('/getUsers', (요청, 응답) => {
+router.get('/getData', (요청, 응답) => {
     let resutl = mysqlConn.test();
     응답.send(resutl);
 })

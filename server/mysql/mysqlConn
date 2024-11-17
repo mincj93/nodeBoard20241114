@@ -1,9 +1,10 @@
 const mysql = require('mysql');
 const connection = mysql.createConnection({
-    HOST: "localhost",
+    HOST: "svc.sel4.cloudtype.app:31935",
     USER: "node",
     PASSWORD: "node",
     DATABASE: "node",
+    
     // host: process.env.HOST,
     // user: process.env.USER,
     // password: process.env.PASSWORD,
@@ -19,9 +20,9 @@ mysqlConn.test = () => {
     lg('mysql 연결 시도')
     connection.connect();
 
-    connection.query('SELECT * from users', (error, rows, fields) => {
+    connection.query('SELECT * from board', (error, rows, fields) => {
         if (error) throw error;
-        console.log('User info is: ', rows);
+        console.log('board info is: ', rows);
     });
 
     connection.end();
