@@ -1,6 +1,6 @@
 const mysql = require('mysql');
 const connection = mysql.createConnection({
-    HOST: "node:3306",
+    HOST: "svc.sel4.cloudtype.app:32399",
     USER: "node",
     PASSWORD: "node",
     DATABASE: "node",
