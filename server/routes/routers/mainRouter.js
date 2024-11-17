@@ -35,12 +35,12 @@ router.get('/about', (요청, 응답) => {
 
 router.get('/contact', (요청, 응답) => {
     lg('/main/contact')
-    응답.render(path.join(mainPage, '/contact'))
+    응답.render(path.join(mainPagePath, '/contact'))
 })
 
 router.get('/post', (요청, 응답) => {
     lg('/main/post')
-    응답.render(path.join(mainPage, '/post'))
+    응답.render(path.join(mainPagePath, '/post'))
 })
 
 router.get('/getData', (요청, 응답) => {
