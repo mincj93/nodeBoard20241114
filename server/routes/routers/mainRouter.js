@@ -30,7 +30,10 @@ const mainPagePath = path.resolve(process.cwd() + '/front/main');
 
 router.get('/about', (요청, 응답) => {
     lg('/main/about')
-    응답.render(path.join(mainPagePath, '/about'))
+    let resutl = mysqlConn.test();
+    응답.send(resutl);
+    
+    // 응답.render(path.join(mainPagePath, '/about'))
 })
 
 router.get('/contact', (요청, 응답) => {
