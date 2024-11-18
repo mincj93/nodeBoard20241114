@@ -48,7 +48,13 @@ app.get('/', async (req, res) => {
     } catch (error) {
         console.error('DB 조회 중 오류 발생:', error);
         // 오류 처리 (예: 사용자에게 오류 메시지 표시)
-        res.status(500).send('데이터베이스 조회 중 오류가 발생했습니다.');
+        lg('데이터베이스 조회 중 오류가 발생했습니다.');
+
+        const data = {
+            navLoc: path.resolve(process.cwd() + '/front/common/nav.ejs'),
+            myName: "민창준입니다"
+        };
+        res.render(path.join(frontPath, '/index'), { data: data});
     }
 });
 
