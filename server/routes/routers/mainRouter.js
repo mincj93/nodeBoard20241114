@@ -28,12 +28,12 @@ const mainPagePath = path.resolve(process.cwd() + '/front/main');
 
 // lg('__dirname =  ', __dirname);
 
-router.get('/about', (요청, 응답) => {
+router.get('/about', (req, res) => {
     lg('/main/about')
-    let resutl = mysqlConn.test();
-    응답.send(resutl);
-    
-    // 응답.render(path.join(mainPagePath, '/about'))
+    const data = {
+        navLoc: path.resolve(process.cwd() + '/front/common/nav.ejs'),
+    };
+    res.render(path.join(mainPagePath, '/about'), { data: data });
 })
 
 router.get('/contact', (요청, 응답) => {
@@ -44,11 +44,6 @@ router.get('/contact', (요청, 응답) => {
 router.get('/post', (요청, 응답) => {
     lg('/main/post')
     응답.render(path.join(mainPagePath, '/post'))
-})
-
-router.get('/getData', (요청, 응답) => {
-    let resutl = mysqlConn.test();
-    응답.send(resutl);
 })
 
 module.exports = router;

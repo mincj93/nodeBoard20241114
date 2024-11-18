@@ -3,15 +3,21 @@ const express = require('express');
 const path = require('path')
 const router = express.Router();
 
+// -------------------------------------------------
+// 기능함수
+const mysqlConn = require(process.cwd() + '/server/mysql/mysqlConn');
+
 // express 는 함수이므로, 반환값을 변수에 저장한다.
 const app = express();
 
 app.use(express.static(path.resolve(process.cwd() + '/public')));
 
 const boardPagePath = path.resolve(process.cwd() + '/front/board');
-router.get('/list', (요청, 응답) => {
-   응답.render(path.join(boardPagePath + '/home'))
-   
+router.get('/getList', (요청, 응답) => {
+
+   let result = mysqlConn.dataSelect();
+   응답.render(path.join(boardPagePath + '/home', { result: result }));
+
 })
 
 module.exports = router;

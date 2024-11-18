@@ -1,8 +1,6 @@
 const boardQuery ={};
 
-boardQuery.getList = 'select * from board limit 3';
-
-
+boardQuery.getBrdRecent3 = 'select * from board limit 3';
 
 
 module.exports = boardQuery;
