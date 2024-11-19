@@ -63,4 +63,25 @@ app.listen(8080, function () {
     console.log("start! express server on port 8080")
 })
 
-// https://velog.io/@fkstndnjs/%EB%85%B8%EB%93%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-AWS%EC%97%90-%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0-ec2-rds
+// AWS 배포과정 https://velog.io/@fkstndnjs/%EB%85%B8%EB%93%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-AWS%EC%97%90-%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0-ec2-rds
+// 키페어 권한수정 chomod 400 에러 해결법 https://dabid.tistory.com/11
+/*
+use node;
+
+-- node.board definition
+
+CREATE TABLE `board` (
+  `idx` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL,
+  `content` varchar(100) NOT NULL,
+  `regdt` datetime NOT NULL DEFAULT current_timestamp(),
+  `regid` varchar(100) NOT NULL,
+  PRIMARY KEY (`idx`)
+);
+
+INSERT INTO board (title, content, regid) values ('제목1', '내용1',1);
+
+select * from board;
+
+commit;
+*/
