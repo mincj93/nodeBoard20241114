@@ -84,4 +84,10 @@ INSERT INTO board (title, content, regid) values ('제목1', '내용1',1);
 select * from board;
 
 commit;
+
+HOST=nodeworld-mysql.cbyoxjoh8vrf.ap-northeast-2.rds.amazonaws.com
+PORT=3306
+USER="admin"
+PASSWORD="AlsCkd!23"
+DATABASE="node"
 */
