@@ -7,6 +7,7 @@ const router = express.Router();
 // -------------------------------------------------
 // 기능함수
 const mysqlConn = require(process.cwd() + '/server/mysql/mysqlConn');
+const boardQuery = require(process.cwd() + '/server/mysql/query/boardQuery');
 
 
 // express 는 함수이므로, 반환값을 변수에 저장한다.
@@ -28,10 +29,12 @@ const mainPagePath = path.resolve(process.cwd() + '/front/main');
 
 // lg('__dirname =  ', __dirname);
 
-router.get('/about', (req, res) => {
+router.get('/about', async (req, res) => {
     lg('/main/about')
+    // const list = await mysqlConn.connectDb(boardQuery.getBrdRecent3)
     const data = {
         navLoc: path.resolve(process.cwd() + '/front/common/nav.ejs'),
+        // list: list,
     };
     res.render(path.join(mainPagePath, '/about'), { data: data });
 })

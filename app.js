@@ -54,7 +54,7 @@ app.get('/', async (req, res) => {
             navLoc: path.resolve(process.cwd() + '/front/common/nav.ejs'),
             myName: "민창준입니다"
         };
-        res.render(path.join(frontPath, '/index'), { data: data});
+        res.send('데이터조회 중 오류가 발생했습니다.');
     }
 });
 
@@ -63,4 +63,4 @@ app.listen(8080, function () {
     console.log("start! express server on port 8080")
 })
 
-// 이제 터미널에 node app.js 를 입력해보자.
+// https://velog.io/@fkstndnjs/%EB%85%B8%EB%93%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-AWS%EC%97%90-%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0-ec2-rds
