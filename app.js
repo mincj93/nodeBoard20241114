@@ -85,8 +85,9 @@ select * from board;
 
 commit;
 
+
 HOST=nodeworld-mysql.cbyoxjoh8vrf.ap-northeast-2.rds.amazonaws.com
-PORT=3306
+PORT=8000
 USER="admin"
 PASSWORD="AlsCkd!23"
 DATABASE="node"
