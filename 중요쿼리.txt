@@ -1,0 +1,52 @@
+use node;
+
+
+ALTER TABLE users ADD CONSTRAINT unique_id UNIQUE (id);
+
+
+drop procedure if exists node.createNewUser;
+
+create procedure node.createNewUser(
+	-- 프로시저에 받을 파라미터들 정의
+	name varchar(100), 
+	compNm varchar(100),
+	phnNum varchar(100),
+	id varchar(100),
+	pwOrg varchar(100))
+BEGIN
+  DECLARE rdmVar varchar(100) default UUID(); -- 프로시저 안에서만 존재할 변수 rdmVar 선언. 기본값은 UUID
+	 insert INTO users (
+		name, 
+		compNm,
+		phnNum,
+		id,
+		pwOrg,
+		pwSecret,
+		salt
+	) values (
+		name, 
+		compNm,
+		phnNum ,
+		id,
+		pwOrg ,
+		SHA2(CONCAT(pwOrg, rdmVar), 256), -- pwSecret
+		rdmVar -- salt
+	); -- 세미콜론 안 찍으면 조짐.
+END;
+
+
+
+call node.createNewUser('김창순', '새회사1','01012341234','newUser2','newUser2Pw');
+
+select * from users;
+
+
+-- 사용자 로그인시 비밀번호 암호화값 비교 쿼리
+SELECT * FROM users
+WHERE id = 'newUser2'
+  AND pwSecret = SHA2(CONCAT('newUser2Pw', salt), 256);
+
+
+-- delete from users;
+
+commit;
