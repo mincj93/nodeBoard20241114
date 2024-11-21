@@ -59,8 +59,8 @@ app.get('/', async (req, res) => {
 });
 
 
-app.listen(8888, function () {
-    console.log("start! express server on port 8080")
+app.listen(80, function () {
+    console.log("start! express server on port 80")
 })
 
 // AWS 배포과정 https://velog.io/@fkstndnjs/%EB%85%B8%EB%93%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-AWS%EC%97%90-%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0-ec2-rds
