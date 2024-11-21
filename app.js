@@ -6,6 +6,7 @@ const router = express.Router();
 const dotenv = require("dotenv").config();
 const routerController = require('./server/routes/routeController.js');
 const { stringify } = require('querystring');
+const bodyParser = require('body-parser');
 
 // -------------------------------------------------
 const mysqlConn = require(process.cwd() + '/server/mysql/mysqlConn');
@@ -16,9 +17,14 @@ const query = require(process.cwd() + '/server/mysql/query/boardQuery')
 const app = express();
 app.use(express.static(path.join(__dirname, '/public')));
 
+// req 객체에서 body에 있는 값 받기위한것
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 // 라우터 설정
 app.use('/main', routerController.mainRouter)
 app.use('/board', routerController.boardRouter)
+app.use('/user', routerController.userRouter)
 
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
@@ -65,30 +71,3 @@ app.listen(80, function () {
 
 // AWS 배포과정 https://velog.io/@fkstndnjs/%EB%85%B8%EB%93%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-AWS%EC%97%90-%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0-ec2-rds
 // 키페어 권한수정 chomod 400 에러 해결법 https://dabid.tistory.com/11
-/*
-use node;
-
--- node.board definition
-
-CREATE TABLE `board` (
-  `idx` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(100) NOT NULL,
-  `content` varchar(100) NOT NULL,
-  `regdt` datetime NOT NULL DEFAULT current_timestamp(),
-  `regid` varchar(100) NOT NULL,
-  PRIMARY KEY (`idx`)
-);
-
-INSERT INTO board (title, content, regid) values ('제목1', '내용1',1);
-
-select * from board;
-
-commit;
-
-
-HOST=nodeworld-mysql.cbyoxjoh8vrf.ap-northeast-2.rds.amazonaws.com
-PORT=8000
-USER="admin"
-PASSWORD="AlsCkd!23"
-DATABASE="node"
-*/

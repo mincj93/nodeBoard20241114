@@ -7,7 +7,7 @@ const router = express.Router();
 // -------------------------------------------------
 // 기능함수
 const mysqlConn = require(process.cwd() + '/server/mysql/mysqlConn');
-const boardQuery = require(process.cwd() + '/server/mysql/query/boardQuery');
+const userQuery = require(process.cwd() + '/server/mysql/query/userQuery');
 
 
 // express 는 함수이므로, 반환값을 변수에 저장한다.
@@ -25,33 +25,32 @@ app.use(express.static(path.resolve(process.cwd() + '/public')));
 // -------------------------------------------------
 // 변수들
 const lg = console.log;
-const mainPagePath = path.resolve(process.cwd() + '/front/main');
-const navLoc = path.resolve(process.cwd() + '/front/common/nav.ejs');
+const userPagePath = path.resolve(process.cwd() + '/front/user');
 
-// lg('__dirname =  ', __dirname);
 
-router.get('/about', async (req, res) => {
-    lg('/main/about')
+// 로그인 페이지
+router.get('/login', (req, res) => {
+    lg('/user/login')
+    lg('req.body == ', req.body)
     const data = {
-        navLoc: navLoc
+        navLoc: path.resolve(process.cwd() + '/front/common/nav.ejs'),
     };
-    res.render(path.join(mainPagePath, '/about'), { data: data });
+    res.render(path.join(userPagePath, '/login'), { data: data });
 })
 
-router.get('/contact', (요청, 응답) => {
-    lg('/main/post')
-    const data = {
-        navLoc: navLoc
-    };
-    응답.render(path.join(mainPagePath, '/contact'), { data: data })
-})
+// 로그인
+router.post('/login', async (req, res) => {
+    lg('/user/login')
+    const reqBody = req.body;
+    lg('req.body == ', reqBody?.userId, reqBody?.userPw);
 
-router.get('/post', (요청, 응답) => {
-    lg('/main/post')
+    const result = await mysqlConn.connectDb(userQuery.getUser, [reqBody?.userId, reqBody?.userPw]);
+    lg('\n\nresult == ', result , reqBody);
+
     const data = {
-        navLoc: navLoc
+        navLoc: path.resolve(process.cwd() + '/front/common/nav.ejs'),
     };
-    응답.render(path.join(mainPagePath, '/post'), { data: data })
+    res.render(path.join(userPagePath, '/login'), { data: data });
 })
 
 module.exports = router;

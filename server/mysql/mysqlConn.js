@@ -4,8 +4,9 @@ const lg = console.log;
 
 const mysqlConn = {};
 
-mysqlConn.connectDb = async (query) => {
+mysqlConn.connectDb = async (query, param) => {
     console.log('\n\n\n\n\n\n\n\n\nquery == ', query);
+    console.log('\n\nparam == ', param);
     return new Promise((resolve, reject) => {
         const connection = mysql.createConnection({
             host: process.env.HOST,
@@ -17,7 +18,7 @@ mysqlConn.connectDb = async (query) => {
 
         connection.connect();
 
-        connection.query(query, (error, rows) => {
+        connection.query(query, param, (error, rows) => {
             if (error) {
                 reject(error);
             } else {
