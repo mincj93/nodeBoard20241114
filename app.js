@@ -7,6 +7,7 @@ const dotenv = require("dotenv").config();
 const routerController = require('./server/routes/routeController.js');
 const { stringify } = require('querystring');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 // -------------------------------------------------
 const mysqlConn = require(process.cwd() + '/server/mysql/mysqlConn');
@@ -17,9 +18,12 @@ const query = require(process.cwd() + '/server/mysql/query/boardQuery')
 const app = express();
 app.use(express.static(path.join(__dirname, '/public')));
 
-// req 객체에서 body에 있는 값 받기위한것
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+// req 객체에서 body에 있는 값 받기위한것 >> express.json 으로 대체
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cors());
+
 
 // 라우터 설정
 app.use('/main', routerController.mainRouter)

@@ -2,6 +2,7 @@
 const express = require('express');
 const path = require('path')
 const router = express.Router();
+const query = require(process.cwd() + '/server/mysql/query/boardQuery')
 
 // -------------------------------------------------
 // 기능함수
@@ -17,6 +18,13 @@ router.get('/getList', (요청, 응답) => {
 
    let result = mysqlConn.dataSelect();
    응답.render(path.join(boardPagePath + '/home', { result: result }));
+
+})
+
+router.get('/getList2', async (요청, 응답) => {
+
+   const listData = await mysqlConn.connectDb(query.getBrdRecent3);
+   응답.send( listData );
 
 })
 
