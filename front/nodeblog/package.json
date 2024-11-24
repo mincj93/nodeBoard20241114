@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.13.5",
     "@emotion/styled": "^11.13.5",
+    "@mui/icons-material": "^6.1.8",
     "@mui/material": "^6.1.8",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -15,6 +16,8 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.0.0",
     "react-scripts": "5.0.1",
+    "react-transition-group": "^4.4.5",
+    "styled-components": "^6.1.13",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -40,5 +43,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "customize-cra": "^1.0.0",
+    "webpack": "^5.96.1",
+    "webpack-cli": "^5.1.4"
   }
 }

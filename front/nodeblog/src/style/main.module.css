@@ -1,0 +1,84 @@
+.banner_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.profile_photo img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 5px solid #ddd;
+    object-fit: cover;
+}
+
+.profile_description {
+    text-align: center;
+    margin-top: 20px;
+    letter-spacing: 0.5px;
+    /* 자간 여유롭게 설정 */
+}
+
+.profile_description h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    /* 제목의 자간도 여유롭게 설정 */
+}
+
+.profile_description p {
+    font-size: 18px;
+    line-height: 1.8;
+    /* 줄 간격도 넓혀서 더 여유롭게 보이도록 설정 */
+    letter-spacing: 0.5px;
+    /* 본문 자간 여유롭게 설정 */
+}
+
+.content_wrapper {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.text_section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* 수직 중앙 정렬 */
+    align-items: center;
+    /* 수평 중앙 정렬 */
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    height: 300px;
+    /* 높이를 설정하여 위아래 간격을 동일하게 */
+    text-align: center;
+    /* 텍스트 가운데 정렬 */
+}
+
+.text_section h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.text_section p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.image_gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.image_item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
