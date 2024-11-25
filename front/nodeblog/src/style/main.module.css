@@ -1,84 +1,253 @@
+/* 기본 폰트 설정 */
+body {
+    font-family: sans-serif;
+    background-color: #2c3e50;
+    /* 어두운 배경색 */
+    color: #ecf0f1;
+    /* 밝은 텍스트 색상 */
+    margin: 0;
+    padding: 0;
+}
+
+/* 컨테이너 기본 설정 */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 섹션 구분을 위한 스타일 */
+.section {
+    margin-bottom: 40px;
+}
+
+/* 배너 콘텐츠 영역 */
 .banner_content {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    margin-top: 90px;
+    background-color: #34495e;
+    /* 어두운 청록색 배경 */
+    border-bottom: 1px solid #1abc9c;
+    /* 섹션 구분선 */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    /* 부드러운 그림자 효과 */
 }
 
+/* 프로필 사진 */
 .profile_photo img {
-    width: 200px;
-    height: 200px;
+    width: 100%;
+    max-width: 200px;
+    height: auto;
     border-radius: 50%;
-    border: 5px solid #ddd;
+    border: 5px solid #2c3e50;
     object-fit: cover;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    /* 사진 주변 그림자 */
 }
 
+/* 프로필 설명 */
 .profile_description {
     text-align: center;
     margin-top: 20px;
     letter-spacing: 0.5px;
-    /* 자간 여유롭게 설정 */
+}
+
+.profile_description .name {
+    font-size: 50px;
+    font-weight: 900;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    color: #ecf0f1;
+    /* 밝은 텍스트 */
 }
 
 .profile_description h2 {
     font-size: 28px;
     margin-bottom: 15px;
-    letter-spacing: 1px;
-    /* 제목의 자간도 여유롭게 설정 */
 }
 
 .profile_description p {
     font-size: 18px;
     line-height: 1.8;
-    /* 줄 간격도 넓혀서 더 여유롭게 보이도록 설정 */
     letter-spacing: 0.5px;
-    /* 본문 자간 여유롭게 설정 */
+    color: #bdc3c7;
+    /* 회색 톤 */
 }
 
+/* 내용 래퍼 */
 .content_wrapper {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 20px;
-    max-width: 1200px;
-    margin: 50px auto;
-    padding: 20px;
+    display: flex;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
+/* 텍스트 섹션 */
 .text_section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    /* 수직 중앙 정렬 */
-    align-items: center;
-    /* 수평 중앙 정렬 */
+    flex: 1;
     padding: 20px;
-    background-color: #f8f8f8;
-    border-radius: 10px;
-    height: 300px;
-    /* 높이를 설정하여 위아래 간격을 동일하게 */
-    text-align: center;
-    /* 텍스트 가운데 정렬 */
+    background-color: #2c3e50;
+    /* 다크 그레이 */
+    min-width: 300px;
+    border-radius: 8px;
+    border: 1px solid #1abc9c;
+    /* 구분선 */
 }
 
 .text_section h2 {
     font-size: 28px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    color: #ecf0f1;
+    /* 밝은 텍스트 */
 }
 
 .text_section p {
     font-size: 18px;
-    line-height: 1.6;
+    line-height: 1.8;
+    color: #bdc3c7;
+    /* 밝은 회색 톤 */
 }
 
+.text_section ul {
+    list-style-type: none;
+    /* 기본 리스트 스타일 제거 */
+    padding: 0;
+    margin: 0;
+}
+
+.text_section ul li {
+    font-size: 18px;
+    margin: 8px 0;
+    /* 항목 간 간격 */
+    padding-left: 20px;
+    position: relative;
+}
+
+.text_section ul li:before {
+    content: '•';
+    /* 원형 기호로 각 항목 앞에 표시 */
+    position: absolute;
+    left: 0;
+    color: #1abc9c;
+    /* 원형 기호 색상 */
+    font-size: 22px;
+}
+
+.text_section ul li:hover {
+    color: #e74c3c;
+    /* 항목 hover 시 색상 변화 */
+}
+
+.text_section Button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #e74c3c;
+    /* 버튼 색상 */
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.text_section Button:hover {
+    background-color: #c0392b;
+    /* 버튼 hover 시 어두운 레드 */
+    transform: scale(1.05);
+    /* 버튼 크기 확장 */
+}
+
+/* 이미지 갤러리 */
 .image_gallery {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
+    /* 모든 방향 간격 균일하게 설정 */
+    background-color: #2c3e50;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #1abc9c;
+    align-content: center;
+    /* 수직 방향에서도 정렬 */
+}
+
+/* 개별 이미지 아이템 */
+.image_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    /* 위아래 간격 동일 */
+    text-align: center;
+    width: 150px;
+    height: 200px;
+    /* 고정 높이로 균일하게 배치 */
+    margin-bottom: 0;
+    /* 아래 여백 제거 */
+    box-sizing: border-box;
+    /* 크기 계산 포함 */
 }
 
 .image_item img {
     width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 150px;
+    /* 이미지 크기 고정 */
+    border-radius: 50%;
+    /* 원형 모양 */
+    object-fit: cover;
+    /* 비율 유지 */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    /* 그림자 효과 */
+    margin: 0;
+    /* 추가 간격 제거 */
+}
+
+.image_item p {
+    font-size: 14px;
+    color: #bdc3c7;
+    margin-top: 10px;
+    /* 텍스트와 이미지 간격 설정 */
+}
+
+/* Footer */
+footer {
+    background-color: #34495e;
+    /* 어두운 청록색 */
+    padding: 30px 20px;
+    color: #ecf0f1;
+    text-align: center;
+    font-size: 16px;
+}
+
+footer a {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    color: #e74c3c;
+    /* 밝은 레드 */
+}
+
+/* 버튼 스타일 */
+.button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #e74c3c;
+    /* 밝은 레드 */
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.button:hover {
+    background-color: #c0392b;
+    /* 어두운 레드 */
+    transform: scale(1.05);
 }

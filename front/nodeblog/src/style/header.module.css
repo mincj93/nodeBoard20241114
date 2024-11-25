@@ -1,62 +1,83 @@
-/* 공통 스타일 */
 .wrap {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #ffffff; /* 깔끔한 배경 */
-  }
-  
-  /* 좌측 로고 스타일 */
-  .logo h1 {
-    margin: 0;
-    font-size: 28px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: bold;
-  }
-  
-  .logo h1 a {
-    text-decoration: none;
-    color: #2c3e50; /* 다크 블루 계열 */
-    transition: color 0.3s ease;
-  }
-  
-  .logo h1 a:hover {
-    color: #3498db; /* 마우스오버 시 밝은 블루 */
-  }
-  
-  /* 우측 메뉴 스타일 */
-  .menu {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .menu a {
-    text-decoration: none;
-    color: #34495e; /* 블루-그레이 계열 */
-    font-size: 18px;
-    font-family: 'Roboto', sans-serif;
-    transition: color 0.3s ease, transform 0.2s ease;
-  }
-  
-  .menu a:hover {
-    color: #1abc9c; /* 마우스오버 시 밝은 민트 계열 */
-    transform: translateY(-2px); /* 살짝 위로 이동 */
-  }
-  
-  /* 버튼 스타일 */
-  .menu a.button {
-    background-color: #e74c3c; /* 따뜻한 레드 */
-    color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 16px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  
-  .menu a.button:hover {
-    background-color: #c0392b; /* 마우스오버 시 더 어두운 레드 */
-    transform: scale(1.05); /* 살짝 확대 */
-  }
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px;
+  background: linear-gradient(#bac8e0, hsl(210, 29%, 65%));
+  /* 깔끔한 배경 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* 헤더의 너비를 화면 전체로 설정 */
+  z-index: 999;
+}
+
+/* 좌측 로고 스타일 */
+.logo h1 {
+  margin: 0;
+  padding-left: 30px;
+  font-size: 35px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+}
+
+.logo h1 a {
+  text-decoration: none;
+  color: #2c3e50;
+  /* 다크 블루 계열 */
+  transition: color 0.3s ease;
+}
+
+.logo h1 a:hover {
+  color: #bc1a58;
+  /* 마우스오버 시 밝은 블루 */
+}
+
+
+/* 우측 메뉴 스타일 */
+.menu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  padding-right: 50px;
+  /* 메뉴와 화면 오른쪽 여백 설정 */
+}
+
+.menu a {
+  text-decoration: none;
+  color: #34495e;
+  /* 블루-그레이 계열 */
+  font-size: 25px;
+  font-family: 'Roboto', sans-serif;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.menu a:hover {
+  color: #bc1a58;
+  /* 마우스오버 시 밝은 민트 계열 */
+  transform: translateY(-2px);
+  /* 살짝 위로 이동 */
+}
+
+/* 버튼 스타일 */
+.menu a.button {
+  background-color: #e74c3c;
+  /* 따뜻한 레드 */
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.menu a.button:hover {
+  background-color: #c0392b;
+  /* 마우스오버 시 더 어두운 레드 */
+  transform: scale(1.05);
+  /* 살짝 확대 */
+}
