@@ -40,7 +40,7 @@ function Header() {
             <a onClick={goHome}>Home</a>
             <a onClick={goAbout}>Career</a>
             <a onClick={goAbout}>Contact</a>
-            <a href="#" className="button primary">Sign Up</a>
+            <a className="button primary">Sign Up</a>
           </div>
         </div>
       </div>
