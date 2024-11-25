@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 20px;
-  background: linear-gradient(#bac8e0, hsl(210, 29%, 65%));
+  background: linear-gradient(#122579, hsl(182, 67%, 26%));
   /* 깔끔한 배경 */
   position: fixed;
   top: 0;
@@ -25,13 +25,13 @@
 
 .logo h1 a {
   text-decoration: none;
-  color: #2c3e50;
+  color: #ecf0f1;
   /* 다크 블루 계열 */
   transition: color 0.3s ease;
 }
 
 .logo h1 a:hover {
-  color: #bc1a58;
+  color: #1abc9c;
   /* 마우스오버 시 밝은 블루 */
 }
 
@@ -48,7 +48,7 @@
 
 .menu a {
   text-decoration: none;
-  color: #34495e;
+  color: #ecf0f1;
   /* 블루-그레이 계열 */
   font-size: 25px;
   font-family: 'Roboto', sans-serif;
@@ -56,7 +56,7 @@
 }
 
 .menu a:hover {
-  color: #bc1a58;
+  color: #1abc9c;
   /* 마우스오버 시 밝은 민트 계열 */
   transform: translateY(-2px);
   /* 살짝 위로 이동 */

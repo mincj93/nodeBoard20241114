@@ -1,38 +1,54 @@
-/* Footer */
-footer {
-    background-color: #34495e;
-    /* 어두운 청록색 */
-    padding: 30px 20px;
+/* Footer 전체 스타일 */
+.footer {
+    background-color: #2c3e50; /* 어두운 배경색 */
+    padding: 50px 20px;
     color: #ecf0f1;
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
+    border-top: 2px solid #1abc9c; /* 상단 구분선 */
+    box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.3); /* 위로 향한 그림자 */
 }
 
-footer a {
-    color: #ecf0f1;
-    text-decoration: none;
-    font-weight: bold;
+/* 아이콘 리스트 */
+.icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px; /* 아이콘 간 간격 */
+    margin: 20px 0;
+    padding: 0;
+    list-style: none;
 }
 
-footer a:hover {
-    color: #e74c3c;
-    /* 밝은 레드 */
+/* 개별 아이콘 및 텍스트 스타일 */
+.icons li {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* 아이콘과 텍스트 간격 */
 }
 
-/* 버튼 스타일 */
-.button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #e74c3c;
-    /* 밝은 레드 */
-    color: white;
-    border-radius: 5px;
-    font-size: 16px;
-    text-transform: uppercase;
+.icons li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none; /* 링크 밑줄 제거 */
+    font-size: 18px; /* 아이콘 및 텍스트 크기 */
+    color: #ecf0f1; /* 기본 텍스트 색상 */
+    transition: all 0.3s ease;
 }
 
-.button:hover {
-    background-color: #c0392b;
-    /* 어두운 레드 */
-    transform: scale(1.05);
+.icons li a:hover {
+    color: #1abc9c; /* hover 시 텍스트 색상 */
+}
+
+/* 아이콘 스타일 */
+.icons li a .MuiSvgIcon-root {
+    font-size: 24px; /* 아이콘 크기 */
+    color: #ecf0f1; /* 아이콘 색상 */
+    transition: all 0.3s ease;
+}
+
+.icons li a:hover .MuiSvgIcon-root {
+    color: #1abc9c; /* hover 시 아이콘 색상 */
+    transform: scale(1.1); /* hover 시 크기 확대 */
 }

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 
 // style
-import st from '../../style/header.module.css'
+import st from '../../style/footer.module.css'
 
 // mamaterial ui
 import { Button } from '@mui/material';
@@ -31,15 +31,12 @@ function Header() {
 
     return (
         <>
-            <footer id="footer">
-                <ul class="icons">
-                    <li><a href="#" class="icon brands alt fa-instagram"><span class="label"><Icon_LocalPhone /></span></a></li>
-                    <li><a href="#" class="icon brands alt fa-instagram"><span class="label"><Icon_Create /></span></a></li>
-                    <li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub<Icon_GitHub /></span></a></li>
-                    <li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email<Icon_Email /></span></a></li>
-                </ul>
-                <ul class="copyright">
-                    <li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            <footer id={st.footer}>
+                <ul class={st.icons}>
+                    <li><a class={st.icon_LocalPhone}><span class="label">Phone no.<Icon_LocalPhone /></span></a></li>
+                    <li><a class={st.icon_Create}><span class="label">Contact<Icon_Create /></span></a></li>
+                    <li><a class={st.icon_GitHub}><span class="label">GitHub<Icon_GitHub /></span></a></li>
+                    <li><a class={st.icon_Email}><span class="label">Email<Icon_Email /></span></a></li>
                 </ul>
             </footer>
         </>
