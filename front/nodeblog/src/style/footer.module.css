@@ -1,0 +1,38 @@
+/* Footer */
+footer {
+    background-color: #34495e;
+    /* 어두운 청록색 */
+    padding: 30px 20px;
+    color: #ecf0f1;
+    text-align: center;
+    font-size: 16px;
+}
+
+footer a {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    color: #e74c3c;
+    /* 밝은 레드 */
+}
+
+/* 버튼 스타일 */
+.button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #e74c3c;
+    /* 밝은 레드 */
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.button:hover {
+    background-color: #c0392b;
+    /* 어두운 레드 */
+    transform: scale(1.05);
+}
