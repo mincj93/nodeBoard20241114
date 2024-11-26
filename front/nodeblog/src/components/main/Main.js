@@ -26,7 +26,7 @@ const Main = () => {
   });
 
 
-  const {  logoList } = state;
+  const { logoList } = state;
 
   const tableData = [
     { id: 1, title: 'React 소개', date: '2024-11-01', author: 'Admin' },
@@ -52,7 +52,7 @@ const Main = () => {
   }, [])
 
   return (
-    <div style={{ minWidth: '600px' }}>
+    <div className={st.mainWrap} >
       <Header />
       <div className={st.banner_content}>
         <div className={st.profile_photo}>

@@ -10,8 +10,9 @@ body {
 }
 
 /* 컨테이너 기본 설정 */
-.container {
-    max-width: 1200px;
+.mainWrap {
+    min-width: 600px;
+    max-width: 100%;
     margin: 0 auto;
     padding: 20px;
 }
