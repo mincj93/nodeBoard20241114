@@ -7,8 +7,8 @@ import './App.css';
 
 // components import
 import Main from './components/main/Main';
-import brdList from './components/board/List';
-import brdWrite from './components/board/Write';
+import BrdList from './components/board/List';
+import BrdWrite from './components/board/Write';
 import SignIn from './components/user/SignIn';
 import SignUp from './components/user/SignUp';
 
@@ -18,10 +18,11 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/brdList" element={<brdList />} />
-        <Route path="/brdWrite" element={<brdWrite />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+
+        <Route path="/brdlist" element={<BrdList />} />
+        <Route path="/brdwrite" element={<BrdWrite />} />
       </Routes>
     </>
   );

@@ -11,18 +11,25 @@ import HomeIcon from '@mui/icons-material/Home';
 
 
 function Header() {
+  /*
+    <Route path="/" element={<Main />} />
+    <Route path="/brdList" element={<brdList />} />
+    <Route path="/brdWrite" element={<brdWrite />} />
+    <Route path="/signin" element={<SignIn />} />
+    <Route path="/signup" element={<SignUp />} />
+  */
   const navigate = useNavigate();
 
   const goHome = () => {
     navigate('/');
   }
 
-  const goCarer = () => {
-    navigate('/career');
+  const goBoard = () => {
+    navigate('/brdlist');
   }
 
-  const goBoard = () => {
-    navigate('/board');
+  const goSignIn = () => {
+    navigate('/signin');
   }
 
   return (
@@ -38,9 +45,8 @@ function Header() {
         <div className={st.boxRight}>
           <div className={st.menu}>
             <a onClick={goHome}>Home</a>
-            <a onClick={goCarer}>Career</a>
             <a onClick={goBoard}>Comment</a>
-            <a className="button primary">Sign Up</a>
+            <a onClick={goSignIn}>SignIn</a>
           </div>
         </div>
       </div>
