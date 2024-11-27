@@ -50,3 +50,30 @@ WHERE id = 'newUser2'
 -- delete from users;
 
 commit;
+
+
+
+
+
+
+
+
+-- node.users definition
+
+CREATE TABLE `users` (
+  `idx` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `phnNum` varchar(100) NOT NULL,
+  `compNm` varchar(100) NOT NULL,
+  `regdt` datetime NOT NULL,
+  `id` varchar(100) NOT NULL,
+  `pworg` varchar(1000) NOT NULL,
+  `pwSecret` varchar(1000) NOT NULL,
+  `salt` varchar(1000) NOT NULL,
+  PRIMARY KEY (`idx`),
+  UNIQUE KEY `users_unique` (`id`)
+) ;
+
+
+
+
