@@ -25,3 +25,48 @@ process.cwd() 함수를 사용하면 node명령을 호출한 작업디렉터리�
 3. public 폴더 접근 기준
 1) src폴더 속 jsx파일은 절대경로를 public폴더로 기준으로 하기 때문에 PUBLIC_URL 환경변수를 사용해 접근하면 된다.
 ex) <img src={`${process.env.PUBLIC_URL}/images/me.jpg`} /> 
+
+
+
+#1 mariaDB 접속
+# mysql -u root -p
+
+#2 Database 확인
+# show databases;# create database DB명;
+
+#3 생성된 database 접속
+# use DB명;
+
+#4 user 계정 생성
+# create user '계정'@'접속위치' identified by '패스워드';
+
+ex) create user 'test'@'127.0.0.1' identified by 'Password'; -- 내부접속만 허용
+
+ex) create user 'test2'@'%' identified by 'Password'; -- 외부접속 허용
+
+#5 user 권한 주기
+# grant all privileges on DB이름.테이블 to '계정'@'접속위치';
+
+ex) grant all privileges on testDB.* to 'test2'@'%';
+
+#6 권한 적용
+# flush privileges;
+
+#7 권한 확인
+# show grants for '계정'@'접속위치';
+
+#8 계정, 권한 삭제
+# drop user '계정아이디'@'접속위치';
+
+# reboke all on DB이름.테이블 from '계정아이디'@'접속위치';
+
+
+
+
+// 리눅스
+* nvm 설치 명령어
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+
+* nvm 설치 적용 명령어
+source ~/.bashrc
+
