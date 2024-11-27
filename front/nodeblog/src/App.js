@@ -6,9 +6,11 @@ import { Routes, Route, Link } from "react-router-dom";
 import './App.css';
 
 // components import
-import About from './components/main/About';
-import Login from './components/main/Login';
 import Main from './components/main/Main';
+import brdList from './components/board/List';
+import brdWrite from './components/board/Write';
+import SignIn from './components/user/SignIn';
+import SignUp from './components/user/SignUp';
 
 
 function App() {
@@ -16,8 +18,10 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/brdList" element={<brdList />} />
+        <Route path="/brdWrite" element={<brdWrite />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </>
   );

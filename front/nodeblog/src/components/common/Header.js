@@ -17,12 +17,12 @@ function Header() {
     navigate('/');
   }
 
-  const goAbout = () => {
-    navigate('/about');
+  const goCarer = () => {
+    navigate('/career');
   }
 
-  const goLogin = () => {
-    navigate('/login');
+  const goBoard = () => {
+    navigate('/board');
   }
 
   return (
@@ -38,8 +38,8 @@ function Header() {
         <div className={st.boxRight}>
           <div className={st.menu}>
             <a onClick={goHome}>Home</a>
-            <a onClick={goAbout}>Career</a>
-            <a onClick={goAbout}>Contact</a>
+            <a onClick={goCarer}>Career</a>
+            <a onClick={goBoard}>Comment</a>
             <a className="button primary">Sign Up</a>
           </div>
         </div>

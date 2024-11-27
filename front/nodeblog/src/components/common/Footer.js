@@ -21,24 +21,28 @@ function Footer() {
     // 아이콘 및 팝업 데이터 정의
     const navItems = [
         {
-            label: 'Phone',
+            label: 'Phone No.',
             icon: <Icon_LocalPhone />,
             content: 'Phone: +82-10-1234-5678',
+            text: 'Phone No.'
         },
         {
-            label: 'Contact',
+            label: 'Comment',
             icon: <Icon_Create />,
             content: 'Feel free to send us a message via the contact form!',
+            text: 'Comment'
         },
         {
             label: 'GitHub',
             icon: <Icon_GitHub />,
             content: 'Visit our GitHub repository at https://github.com',
+            text: 'GitHub'
         },
         {
             label: 'Email',
             icon: <Icon_Email />,
             content: 'Send us an email at example@gmail.com',
+            text: 'Email'
         },
     ];
 
@@ -54,9 +58,6 @@ function Footer() {
                 boxShadow: '0px -5px 15px rgba(0, 0, 0, 0.3)',
             }}
         >
-            <Typography variant="h6" gutterBottom>
-                Footer Section
-            </Typography>
             <Box
                 sx={{
                     display: 'flex',
@@ -65,23 +66,32 @@ function Footer() {
                     marginTop: '20px',
                 }}
             >
-                {navItems.map((item, index) => (
-                    <IconButton
-                        key={index}
-                        aria-label={item.label}
-                        sx={{
-                            color: '#ecf0f1',
-                            transition: 'all 0.3s ease',
-                            '&:hover': {
-                                color: '#1abc9c',
-                                transform: 'scale(1.1)',
-                            },
-                        }}
-                        onClick={() => handleOpen(item.label, item.content)} // 클릭 시 팝업 호출
-                    >
-                        {item.icon}
-                    </IconButton>
-                ))}
+                {navItems.map((item, index) => {
+                    return (
+                        <>
+                            <IconButton
+                                title='sdaf'
+                                key={index}
+                                aria-label={item.label}
+                                sx={{
+                                    color: '#ecf0f1',
+                                    transition: 'all 0.3s ease',
+                                    '&:hover': {
+                                        color: '#1abc9c',
+                                        transform: 'scale(1.1)',
+                                    },
+                                    // paddingLeft: '5px'
+                                }}
+                                onClick={() => handleOpen(item.label, item.content)} // 클릭 시 팝업 호출
+                            >
+                                <Typography >
+                                    {item.text}
+                                </Typography>
+                                {item.icon}
+                            </IconButton>
+                        </>
+                    )
+                })}
             </Box>
 
             {/* 팝업 컴포넌트 */}
@@ -97,9 +107,6 @@ function Footer() {
                 </DialogActions>
             </Dialog>
 
-            <Typography variant="body2" sx={{ marginTop: '20px' }}>
-                © 2024 Your Website. All rights reserved.
-            </Typography>
         </Box>
     );
 }

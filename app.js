@@ -16,6 +16,7 @@ const query = require(process.cwd() + '/server/mysql/query/boardQuery')
 // -------------------------------------------------
 // express 설정
 const app = express();
+app.use(express.static(path.join(process.cwd(), '/front/nodeblog/build'))); // react 프론트 경로 연결 1
 app.use(express.static(path.join(__dirname, '/public')));
 
 // req 객체에서 body에 있는 값 받기위한것 >> express.json 으로 대체
@@ -43,29 +44,33 @@ const frontPath = path.resolve(process.cwd() + '/front');
 // -------------------------------------------------
 // API
 
-app.get('/', async (req, res) => {
-    try {
-        const listData = await mysqlConn.connectDb(query.getBrdRecent3);
-        console.log('\n\n\n\n\n\n\n\n\n\n\n\nlistData == ', listData);
+// app.get('/', async (req, res) => {
+//     try {
+//         const listData = await mysqlConn.connectDb(query.getBrdRecent3);
+//         console.log('\n\n\n\n\n\n\n\n\n\n\n\nlistData == ', listData);
 
-        const data = {
-            navLoc: path.resolve(process.cwd() + '/front/common/nav.ejs'),
-            myName: "민창준입니다",
-            listData: listData,
-        };
+//         const data = {
+//             navLoc: path.resolve(process.cwd() + '/front/common/nav.ejs'),
+//             myName: "민창준입니다",
+//             listData: listData,
+//         };
 
-        res.render(path.join(frontPath, '/index'), { data: data });
-    } catch (error) {
-        console.error('DB 조회 중 오류 발생:', error);
-        // 오류 처리 (예: 사용자에게 오류 메시지 표시)
-        lg('데이터베이스 조회 중 오류가 발생했습니다.');
+//         res.render(path.join(frontPath, '/index'), { data: data });
+//     } catch (error) {
+//         console.error('DB 조회 중 오류 발생:', error);
+//         // 오류 처리 (예: 사용자에게 오류 메시지 표시)
+//         lg('데이터베이스 조회 중 오류가 발생했습니다.');
 
-        const data = {
-            navLoc: path.resolve(process.cwd() + '/front/common/nav.ejs'),
-            myName: "민창준입니다",
-        };
-        res.render(path.join(frontPath, '/index'), { data: data });
-    }
+//         const data = {
+//             navLoc: path.resolve(process.cwd() + '/front/common/nav.ejs'),
+//             myName: "민창준입니다",
+//         };
+//         res.render(path.join(frontPath, '/index'), { data: data });
+//     }
+// });
+app.get('/', function (요청, 응답) {
+    lg(path.join(process.cwd(), '/front/nodeblog/build/index.html'));
+    응답.sendFile(path.join(process.cwd(), '/front/nodeblog/build/index.html'));
 });
 
 
