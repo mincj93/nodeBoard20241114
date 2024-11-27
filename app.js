@@ -43,31 +43,6 @@ const frontPath = path.resolve(process.cwd() + '/front');
 
 // -------------------------------------------------
 // API
-
-// app.get('/', async (req, res) => {
-//     try {
-//         const listData = await mysqlConn.connectDb(query.getBrdRecent3);
-//         console.log('\n\n\n\n\n\n\n\n\n\n\n\nlistData == ', listData);
-
-//         const data = {
-//             navLoc: path.resolve(process.cwd() + '/front/common/nav.ejs'),
-//             myName: "민창준입니다",
-//             listData: listData,
-//         };
-
-//         res.render(path.join(frontPath, '/index'), { data: data });
-//     } catch (error) {
-//         console.error('DB 조회 중 오류 발생:', error);
-//         // 오류 처리 (예: 사용자에게 오류 메시지 표시)
-//         lg('데이터베이스 조회 중 오류가 발생했습니다.');
-
-//         const data = {
-//             navLoc: path.resolve(process.cwd() + '/front/common/nav.ejs'),
-//             myName: "민창준입니다",
-//         };
-//         res.render(path.join(frontPath, '/index'), { data: data });
-//     }
-// });
 app.get('/', function (요청, 응답) {
     lg(path.join(process.cwd(), '/front/nodeblog/build/index.html'));
     응답.sendFile(path.join(process.cwd(), '/front/nodeblog/build/index.html'));
