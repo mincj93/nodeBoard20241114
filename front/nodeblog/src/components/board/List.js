@@ -1,15 +1,34 @@
-import React from 'react';
+
+import axios from 'axios'
+import { useEffect } from 'react';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
 import st from '../../style/main.module.css';
 
 const List = () => {
+    const lg = console.log;
     const tableData = [
         { id: 1, title: '첫 번째 게시글', date: '2024-11-01', author: 'Admin' },
         { id: 2, title: '두 번째 게시글', date: '2024-11-05', author: 'User1' },
         { id: 3, title: '세 번째 게시글', date: '2024-11-10', author: 'DevMaster' },
     ];
+
+
+    const getList2 = () => {
+        lg('asdfasdfasfd')
+        axios.get('http://localhost/board/getList2').then((결과) => {
+            lg(결과.data)
+        })
+            .catch(() => {
+                lg('실패함')
+            })
+    }
+
+    useEffect(() => {
+        getList2();
+    })
+
 
     return (
         <div className={st.mainWrap}>

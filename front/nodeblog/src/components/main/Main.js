@@ -75,8 +75,6 @@ const Main = () => {
           </div>
           <div className={st.image_gallery}>
             {logoList.map((imgSrc, idx) => {
-              lg('imgSrc == ', imgSrc)
-              lg('idx == ', idx)
               return (
                 <div className={st.image_item} key={idx}>
                   <img src={imgSrc} alt={`Sample ${idx + 1}`} />

@@ -74,6 +74,15 @@ CREATE TABLE `users` (
   UNIQUE KEY `users_unique` (`id`)
 ) ;
 
+-- node.board definition
 
+CREATE TABLE `board` (
+  `idx` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL,
+  `content` varchar(1000) NOT NULL,
+  `regdt` datetime NOT NULL DEFAULT current_timestamp(),
+  `regid` varchar(100) NOT NULL,
+  PRIMARY KEY (`idx`)
+) ;
 
 
