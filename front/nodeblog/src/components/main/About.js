@@ -19,7 +19,7 @@ const lg = console.log;
 function About() {
 
   const getList2 = () => {
-    axios.get('http://localhost/board/getList2').then((결과) => {
+    axios.get('http://43.202.34.90/board/getList2').then((결과) => {
       lg(결과.data)
     })
       .catch(() => {
