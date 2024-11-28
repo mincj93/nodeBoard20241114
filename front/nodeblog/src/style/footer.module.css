@@ -49,6 +49,6 @@
 }
 
 .icons li a:hover .MuiSvgIcon-root {
-    color: #1abc9c; /* hover 시 아이콘 색상 */
+    color: #e74c3c; /* hover 시 아이콘 색상 */
     transform: scale(1.1); /* hover 시 크기 확대 */
 }

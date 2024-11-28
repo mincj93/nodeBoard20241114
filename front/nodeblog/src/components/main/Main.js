@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
+import axios from 'axios';
+
 
 // MUI
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
@@ -10,31 +12,24 @@ import st from '../../style/main.module.css';
 
 // 이미지
 import me from '../../images/me.jpg';
-// import logo_lightsail from '../../images/logo_lightsail.png';
-// import logo_express from '../../images/logo_express.png';
-// import logo_mui from '../../images/logo_mui.png';
-// import logo_mysql from '../../images/logo_mysql.png';
-// import logo_react from '../../images/logo_react.png';
+import logo_react from '../../images/logo_react.png';
+import logo_mui from '../../images/logo_mui.png';
+import logo_express from '../../images/logo_express.png';
+import logo_mysql from '../../images/logo_mysql.png';
+import logo_lightsail from '../../images/logo_lightsail.png';
 
 const Main = () => {
   const lg = console.log;
 
 
   const [state, setState] = useState({
-    // logoList: [logo_react, logo_mui, logo_express, logo_mysql, logo_lightsail],
-    logoList: [],
+    logoList: [logo_react, logo_mui, logo_express, logo_mysql, logo_lightsail],
+    // logoList: [],
+    brdList: [],
   });
 
 
-  const { logoList } = state;
-
-  const tableData = [
-    { id: 1, title: 'React 소개', date: '2024-11-01', author: 'Admin' },
-    { id: 2, title: 'MUI의 장점', date: '2024-11-05', author: 'User1' },
-    { id: 3, title: 'Express로 서버 개발하기', date: '2024-11-10', author: 'DevMaster' },
-    { id: 4, title: 'MySQL 기본 사용법', date: '2024-11-15', author: 'DBAdmin' },
-    { id: 5, title: 'AWS Lightsail 활용', date: '2024-11-20', author: 'CloudExpert' },
-  ];
+  const { logoList, brdList } = state;
 
   // logo이미지 한번에 가져오기
   const getLogoList = () => {
@@ -47,8 +42,23 @@ const Main = () => {
     }));
   }
 
+
+  const getBrdLast5 = () => {
+    axios.get(`http://${process.env.REACT_APP_API_URL}/board/getBrdLast5`).then((res) => {
+      lg(res.data)
+      setState((prevState) => ({
+        ...prevState,
+        brdList: res.data
+      }));
+    })
+      .catch(() => {
+        lg('실패함')
+      })
+  }
+
   useEffect(() => {
-    getLogoList();
+    // getLogoList(); 순서가 바뀌어서 들어오기에 그냥 6개라 import로 바꿈
+    getBrdLast5();
   }, [])
 
   return (
@@ -80,7 +90,6 @@ const Main = () => {
                   <img src={imgSrc} alt={`Sample ${idx + 1}`} />
                 </div>
               )
-
             })}
           </div>
         </div>
@@ -93,22 +102,22 @@ const Main = () => {
               width: '100%',
             }}
           >
-            <Table>
-              <TableHead>
+            <Table >
+              <TableHead className={st.brdTable_head}>
                 <TableRow>
-                  <TableCell sx={{ color: '#1abc9c', fontWeight: 'bold' }}>ID</TableCell>
-                  <TableCell sx={{ color: '#1abc9c', fontWeight: 'bold' }}>Title</TableCell>
-                  <TableCell sx={{ color: '#1abc9c', fontWeight: 'bold' }}>Date</TableCell>
-                  <TableCell sx={{ color: '#1abc9c', fontWeight: 'bold' }}>Author</TableCell>
+                  <TableCell>ID</TableCell>
+                  <TableCell>Title</TableCell>
+                  <TableCell>Date</TableCell>
+                  <TableCell>Author</TableCell>
                 </TableRow>
               </TableHead>
-              <TableBody>
-                {tableData.map((row) => (
-                  <TableRow key={row.id} hover>
-                    <TableCell sx={{ color: '#ecf0f1' }}>{row.id}</TableCell>
-                    <TableCell sx={{ color: '#ecf0f1' }}>{row.title}</TableCell>
-                    <TableCell sx={{ color: '#ecf0f1' }}>{row.date}</TableCell>
-                    <TableCell sx={{ color: '#ecf0f1' }}>{row.author}</TableCell>
+              <TableBody className={st.brdTable_body}>
+                {brdList.map((row, idx) => (
+                  <TableRow key={idx} className={st.brdTable_row}>
+                    <TableCell className={st.brdTable_cell_idx}>{idx + 1}</TableCell>
+                    <TableCell className={st.brdTable_cell_title}>{row.title}</TableCell>
+                    <TableCell className={st.brdTable_cell_regdt}>{row.regdt}</TableCell>
+                    <TableCell className={st.brdTable_cell_regid}>{row.regid}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

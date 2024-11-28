@@ -5,7 +5,7 @@
   align-items: center;
   padding: 20px 20px;
   /* background: linear-gradient(#122579, hsl(182, 67%, 26%)); */
-  background-color: #2fb2bb;
+  background-color: #1abc9c;
   /* 깔끔한 배경 */
   position: fixed;
   top: 0;
@@ -32,7 +32,7 @@
 }
 
 .logo h1 a:hover {
-  color: #5500a5;
+  color: #e74c3c;
   /* 마우스오버 시 밝은 블루 */
 }
 
@@ -57,7 +57,7 @@
 }
 
 .menu a:hover {
-  color: #1abc9c;
+  color: #e74c3c;
   /* 마우스오버 시 밝은 민트 계열 */
   transform: translateY(-2px);
   /* 살짝 위로 이동 */

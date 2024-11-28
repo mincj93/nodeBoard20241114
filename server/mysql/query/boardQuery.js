@@ -1,6 +1,6 @@
 const boardQuery ={};
 
-boardQuery.getBrdRecent3 = 'select * from board limit 3';
-
+boardQuery.getBrdLast5 = 'select * from board order by regdt desc limit 5';
+boardQuery.getBrdDtl = `select * from board where idx = ?`;
 
 module.exports = boardQuery;

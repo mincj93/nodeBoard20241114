@@ -14,10 +14,9 @@ const List = () => {
         { id: 3, title: '세 번째 게시글', date: '2024-11-10', author: 'DevMaster' },
     ];
 
-
-    const getList2 = () => {
-        lg('asdfasdfasfd')
-        axios.get('http://43.202.34.90/board/getList2').then((결과) => {
+    const getBrdLast5 = () => {
+        lg('asdfasdfasfd ', process.env.REACT_APP_API_URL)
+        axios.get(`http://${process.env.REACT_APP_API_URL}/board/getBrdLast5`).then((결과) => {
             lg(결과.data)
         })
             .catch(() => {
@@ -26,7 +25,7 @@ const List = () => {
     }
 
     useEffect(() => {
-        getList2();
+        getBrdLast5();
     })
 
 

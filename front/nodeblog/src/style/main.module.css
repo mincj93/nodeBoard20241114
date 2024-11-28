@@ -213,44 +213,6 @@ body {
     /* 텍스트와 이미지 간격 설정 */
 }
 
-/* Footer */
-footer {
-    background-color: #34495e;
-    /* 어두운 청록색 */
-    padding: 30px 20px;
-    color: #ecf0f1;
-    text-align: center;
-    font-size: 16px;
-}
-
-footer a {
-    color: #ecf0f1;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-footer a:hover {
-    color: #e74c3c;
-    /* 밝은 레드 */
-}
-
-/* 버튼 스타일 */
-.button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #e74c3c;
-    /* 밝은 레드 */
-    color: white;
-    border-radius: 5px;
-    font-size: 16px;
-    text-transform: uppercase;
-}
-
-.button:hover {
-    background-color: #c0392b;
-    /* 어두운 레드 */
-    transform: scale(1.05);
-}
 
 /* 게시판 섹션 스타일 */
 .table_section {
@@ -267,7 +229,7 @@ footer a:hover {
     padding: 20px;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
     border: 1px solid #1abc9c;
-    width: calc(100% - 40px);
+    width: 100%;
     /* 좌우 여백 제외 */
 }
 
@@ -291,4 +253,44 @@ footer a:hover {
 .table tr:hover {
     background-color: #1abc9c;
     transition: 0.3s;
+}
+
+.text_section ul li:hover {
+    color: #e74c3c;
+    transition: 0.3s;
+    /* 항목 hover 시 색상 변화 */
+}
+
+
+.brdTable_head tr th{
+    color: #1abc9c;
+    font-weight: bold;
+}
+
+.brdTable_body tr:hover {
+    background-color: #4a6a8b;
+    transition: 0.3s;
+}
+
+
+.brdTable_body tr:hover td {
+    color: #e74c3c;
+    transition: 0.3s;
+}
+
+.brdTable_body td {
+    color: #ecf0f1;
+}
+
+.brdTable_cell_idx{
+    width: 10px;
+}
+.brdTable_cell_title{
+    width: 200px;
+}
+.brdTable_cell_regdt{
+    width: 100px;
+}
+.brdTable_cell_regid{
+    width: 50px;
 }

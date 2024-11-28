@@ -4,6 +4,7 @@ import Icon_Email from '@mui/icons-material/Email';
 import Icon_GitHub from '@mui/icons-material/GitHub';
 import Icon_Create from '@mui/icons-material/Create';
 import Icon_LocalPhone from '@mui/icons-material/LocalPhone';
+import st from '../../style/footer.module.css';
 
 function Footer() {
     const [open, setOpen] = useState(false); // 팝업 열림 상태 관리
@@ -47,37 +48,19 @@ function Footer() {
     ];
 
     return (
-        <Box
-            component="footer"
-            sx={{
-                backgroundColor: '#2c3e50',
-                padding: '50px 20px',
-                color: '#ecf0f1',
-                textAlign: 'center',
-                borderTop: '2px solid #1abc9c',
-                boxShadow: '0px -5px 15px rgba(0, 0, 0, 0.3)',
-            }}
-        >
-            <Box
-                sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    gap: '40px',
-                    marginTop: '20px',
-                }}
-            >
+        <Box className={st.footer}>
+            <Box className={st.icons}>
                 {navItems.map((item, index) => {
                     return (
                         <>
                             <IconButton
-                                title='sdaf'
                                 key={index}
                                 aria-label={item.label}
                                 sx={{
                                     color: '#ecf0f1',
                                     transition: 'all 0.3s ease',
                                     '&:hover': {
-                                        color: '#1abc9c',
+                                        color: '#e74c3c',
                                         transform: 'scale(1.1)',
                                     },
                                     // paddingLeft: '5px'
@@ -107,7 +90,7 @@ function Footer() {
                 </DialogActions>
             </Dialog>
 
-        </Box>
+        </Box >
     );
 }
 

@@ -21,9 +21,11 @@ router.get('/getList', (요청, 응답) => {
 
 })
 
-router.get('/getList2', async (요청, 응답) => {
-
-   const listData = await mysqlConn.connectDb(query.getBrdRecent3);
+router.get('/getBrdLast5', async (요청, 응답) => {
+   // preparedStatement 형식 쿼리에 인자 보내는 방법
+   // const result = await mysqlConn.connectDb(쿼리, [인자 순서대로 배열로 보내야함]);
+   // ex) const result = await mysqlConn.connectDb(userQuery.getUser, [reqBody?.userId, reqBody?.userPw]);
+   const listData = await mysqlConn.connectDb(query.getBrdLast5);
    응답.send( listData );
 
 })
