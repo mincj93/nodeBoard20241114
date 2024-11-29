@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
 import { Button, TextField, Paper, Box } from '@mui/material';
-import st from '../../style/main.module.css';
+import st from '../../style/signin.module.css';
 
 const Signin = () => {
     return (

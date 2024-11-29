@@ -25,11 +25,11 @@ function Header() {
   }
 
   const goBoard = () => {
-    navigate('/brdlist');
+    navigate('/brdList');
   }
 
   const goSignIn = () => {
-    navigate('/signin');
+    navigate('/signIn');
   }
 
   return (

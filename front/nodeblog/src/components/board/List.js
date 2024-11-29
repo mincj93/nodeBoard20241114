@@ -1,82 +1,78 @@
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-import axios from 'axios'
-import { useEffect } from 'react';
+// MUI Components
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, Paper, Typography, Box } from '@mui/material';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
-import st from '../../style/main.module.css';
 
-const List = () => {
-    const lg = console.log;
-    const tableData = [
-        { id: 1, title: '첫 번째 게시글', date: '2024-11-01', author: 'Admin' },
-        { id: 2, title: '두 번째 게시글', date: '2024-11-05', author: 'User1' },
-        { id: 3, title: '세 번째 게시글', date: '2024-11-10', author: 'DevMaster' },
-    ];
+// 스타일
+import styles from '../../style/board/list.module.css';
 
-    const getBrdLast5 = () => {
-        lg('asdfasdfasfd ', process.env.REACT_APP_API_URL)
-        axios.get(`http://${process.env.REACT_APP_API_URL}/board/getBrdLast5`).then((결과) => {
-            lg(결과.data)
-        })
-            .catch(() => {
-                lg('실패함')
+const BoardList = () => {
+    const [boardList, setBoardList] = useState([]);
+    const navigate = useNavigate();
+
+    // 게시글 목록 가져오기
+    const fetchBoardList = () => {
+        axios.get(`http://${process.env.REACT_APP_API_URL}/board/list`)
+            .then((res) => {
+                setBoardList(res.data);
             })
-    }
+            .catch(() => console.error('데이터 로드 실패'));
+    };
 
     useEffect(() => {
-        getBrdLast5();
-    })
+        fetchBoardList();
+    }, []);
 
+    const goDetail = (idx) => {
+        navigate(`/brdDetail/${idx}`); // 상세보기 페이지로 이동
+    };
+
+    const goCreate = () => {
+        navigate('/brdDetail'); // 작성 페이지로 이동
+    };
 
     return (
-        <div className={st.mainWrap}>
+        <>
             <Header />
-            <div className={st.table_section}>
-                <h2 style={{ textAlign: 'center', color: '#ecf0f1' }}>게시판 리스트</h2>
-                <TableContainer
-                    component={Paper}
-                    sx={{
-                        backgroundColor: '#34495e',
-                        width: '100%',
-                    }}
-                >
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell sx={{ color: '#1abc9c', fontWeight: 'bold' }}>ID</TableCell>
-                                <TableCell sx={{ color: '#1abc9c', fontWeight: 'bold' }}>Title</TableCell>
-                                <TableCell sx={{ color: '#1abc9c', fontWeight: 'bold' }}>Date</TableCell>
-                                <TableCell sx={{ color: '#1abc9c', fontWeight: 'bold' }}>Author</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {tableData.map((row) => (
-                                <TableRow key={row.id} hover>
-                                    <TableCell sx={{ color: '#ecf0f1' }}>{row.id}</TableCell>
-                                    <TableCell sx={{ color: '#ecf0f1' }}>{row.title}</TableCell>
-                                    <TableCell sx={{ color: '#ecf0f1' }}>{row.date}</TableCell>
-                                    <TableCell sx={{ color: '#ecf0f1' }}>{row.author}</TableCell>
+            <div className={styles.mainWrap}>
+                <Box className={styles.listWrapper} component={Paper} elevation={3}>
+                    <Typography className={styles.listTitle}>게시글 목록</Typography>
+                    <TableContainer>
+                        <Table>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell align="center">번호</TableCell>
+                                    <TableCell>제목</TableCell>
+                                    <TableCell align="center">작성자</TableCell>
+                                    <TableCell align="center">작성일</TableCell>
                                 </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-                <Button
-                    variant="contained"
-                    sx={{
-                        backgroundColor: '#1abc9c',
-                        marginTop: '20px',
-                        float: 'right',
-                    }}
-                    href="/boardwrite"
-                >
-                    새 글 작성
-                </Button>
+                            </TableHead>
+                            <TableBody>
+                                {boardList.map((board, idx) => (
+                                    <TableRow key={board.idx} hover onClick={() => goDetail(board.idx)} className={styles.tableRow}>
+                                        <TableCell align="center">{idx + 1}</TableCell>
+                                        <TableCell>{board.title}</TableCell>
+                                        <TableCell align="center">{board.regid}</TableCell>
+                                        <TableCell align="center">{board.regdt}</TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                    <Box className={styles.actionButtons}>
+                        <Button variant="contained" className={styles.createButton} onClick={goCreate}>
+                            작성하기
+                        </Button>
+                    </Box>
+                </Box>
             </div>
             <Footer />
-        </div>
+        </>
     );
 };
 
-export default List;
+export default BoardList;

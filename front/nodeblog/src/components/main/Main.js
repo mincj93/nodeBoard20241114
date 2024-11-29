@@ -5,7 +5,7 @@ import axios from 'axios';
 
 
 // MUI
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
 
 // 스타일
 import st from '../../style/main.module.css';
@@ -17,9 +17,12 @@ import logo_mui from '../../images/logo_mui.png';
 import logo_express from '../../images/logo_express.png';
 import logo_mysql from '../../images/logo_mysql.png';
 import logo_lightsail from '../../images/logo_lightsail.png';
+import { useNavigate } from 'react-router-dom';
+import dayjs from 'dayjs';
 
 const Main = () => {
   const lg = console.log;
+  const navigate = useNavigate();
 
 
   const [state, setState] = useState({
@@ -32,6 +35,7 @@ const Main = () => {
   const { logoList, brdList } = state;
 
   // logo이미지 한번에 가져오기
+  // 이미지 순서가 바뀌어서 안 씀.
   const getLogoList = () => {
     // const reqLogoList = require.context('이미지경로', 하위폴더포함여부 true false, 허용 이미지 확장자);
     const reqLogoList = require.context('../../images/logo', false, /\.(png|jpe?g|svg)$/);
@@ -54,6 +58,14 @@ const Main = () => {
       .catch(() => {
         lg('실패함')
       })
+  }
+
+  const goDetail = (idx) => {
+    navigate(`/brdDetail/${idx}`);
+  }
+  
+  const goCreate = () => {
+    navigate(`/brdWrite`);
   }
 
   useEffect(() => {
@@ -94,39 +106,43 @@ const Main = () => {
           </div>
         </div>
         <div className={st.table_section}>
-          <h2 style={{ textAlign: 'center', color: '#ecf0f1' }}>게시판</h2>
+          <h2 style={{ textAlign: 'center', color: '#ecf0f1' }}>Comment List</h2>
           <TableContainer
             component={Paper}
             sx={{
               backgroundColor: '#34495e',
               width: '100%',
+              marginTop: '20px'
             }}
           >
             <Table >
               <TableHead className={st.brdTable_head}>
                 <TableRow>
-                  <TableCell>ID</TableCell>
-                  <TableCell>Title</TableCell>
-                  <TableCell>Date</TableCell>
-                  <TableCell>Author</TableCell>
+                  <TableCell>번호</TableCell>
+                  <TableCell>제목</TableCell>
+                  <TableCell>작성일</TableCell>
+                  <TableCell>작성자</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody className={st.brdTable_body}>
                 {brdList.map((row, idx) => (
-                  <TableRow key={idx} className={st.brdTable_row}>
+                  <TableRow key={idx} className={st.brdTable_row} >
                     <TableCell className={st.brdTable_cell_idx}>{idx + 1}</TableCell>
-                    <TableCell className={st.brdTable_cell_title}>{row.title}</TableCell>
-                    <TableCell className={st.brdTable_cell_regdt}>{row.regdt}</TableCell>
+                    <TableCell className={st.brdTable_cell_title} onClick={() => goDetail(row.idx)}>{row.title}</TableCell>
+                    <TableCell className={st.brdTable_cell_regdt}>{dayjs(row.regdt).format('YYYY-MM-DD')}</TableCell>
                     <TableCell className={st.brdTable_cell_regid}>{row.regid}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
           </TableContainer>
+          <Button variant="contained" className={st.createButton} onClick={goCreate}>
+            Comment 작성하기
+          </Button>
         </div>
       </div>
       <Footer />
-    </div>
+    </div >
   );
 };
 
