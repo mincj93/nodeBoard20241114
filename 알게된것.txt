@@ -70,3 +70,6 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 * nvm 설치 적용 명령어
 source ~/.bashrc
 
+
+// Groq api키
+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

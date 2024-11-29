@@ -285,12 +285,15 @@ body {
 .brdTable_cell_idx{
     width: 10px;
 }
+
 .brdTable_cell_title{
     width: 200px;
 }
+
 .brdTable_cell_regdt{
     width: 100px;
 }
+
 .brdTable_cell_regid{
     width: 50px;
 }
