@@ -3,7 +3,7 @@
 import { useNavigate } from 'react-router-dom'
 
 // style
-import st from '../../style/header.module.css'
+import st from '../../style/common/header.module.css'
 
 // mamaterial ui
 import { Button } from '@mui/material';
@@ -25,11 +25,11 @@ function Header() {
   }
 
   const goBoard = () => {
-    navigate('/brdList');
+    navigate('/board/list');
   }
 
   const goSignIn = () => {
-    navigate('/signIn');
+    navigate('/auth/signin');
   }
 
   return (

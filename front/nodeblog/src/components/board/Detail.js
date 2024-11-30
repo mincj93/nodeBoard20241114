@@ -1,113 +1,88 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
-import dayjs from 'dayjs';
-
-// MUI Components
-import { TextField, Button, Paper, Box, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import st from '../../style/board/detail.module.css';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
-
-// 스타일
-import styles from '../../style/board/detail.module.css';
-
-const BoardDetail = () => {
-    const { idx } = useParams();
+import { useScrollToTop } from '../../hooks/useScrollToTop';
+function Detail() {
+    useScrollToTop();
     const navigate = useNavigate();
-    const isEdit = !!idx;
-    const [boardData, setBoardData] = useState({
+    const [formData, setFormData] = useState({
         title: '',
         content: '',
-        regid: '',
-        regdt: dayjs().format('YYYY-MM-DD'),
     });
 
-    const fetchBoardDetail = () => {
-        if (isEdit) {
-            axios.get(`http://${process.env.REACT_APP_API_URL}/board/${idx}`)
-                .then((res) => {
-                    setBoardData(res.data);
-                })
-                .catch(() => console.error('데이터 로드 실패'));
-        }
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
     };
 
-    const saveBoardData = () => {
-        const url = isEdit
-            ? `http://${process.env.REACT_APP_API_URL}/board/update/${idx}`
-            : `http://${process.env.REACT_APP_API_URL}/board/create`;
-
-        axios.post(url, boardData)
-            .then(() => navigate('/'))
-            .catch(() => console.error('저장 실패'));
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        // API 연동 로직 구현
+        navigate('/board/list');
     };
 
-    useEffect(() => {
-        fetchBoardDetail();
-        window.scrollTo(0, 0);
-    }, [idx]);
+    const handleCancel = () => {
+        navigate(-1);
+    };
 
     return (
         <>
             <Header />
-            <div className={styles.mainWrap}>
-                <Box className={styles.detailWrapper}>
-                    <Typography className={styles.detailTitle}>
-                        <h2>{isEdit ? 'Comment 수정' : 'Comment 작성'}</h2>
-                    </Typography>
-
-                    <Box>
-                        <div className='input_title'>
-                            <text className='text_label'>제목</text>
-                            <TextField
-                                fullWidth
-                                className={styles.detailField}
-                                // label="제목"
-                                variant="outlined"
-                                value={boardData.title}
-                                onChange={(e) => setBoardData({ ...boardData, title: e.target.value })}
-                            />
-                        </div>
-
-                        <div className='input_title'>
-                            <text>작성자</text>
-                            <TextField
-                                fullWidth
-                                className={styles.detailField}
-                                // label="작성자"
-                                variant="outlined"
-                                value={boardData.regid}
-                                onChange={(e) => setBoardData({ ...boardData, regid: e.target.value })}
-                            />
-                        </div>
-                        <div className='input_title'>
-                            <text>내용</text>
-                            <TextField
-                                fullWidth
-                                className={styles.detailField}
-                                // label="내용"
-                                variant="outlined"
-                                multiline
-                                rows={8}
-                                value={boardData.content}
-                                onChange={(e) => setBoardData({ ...boardData, content: e.target.value })}
-                            />
-                        </div>
-                    </Box>
-
-                    <Box className={styles.detailButtons}>
-                        <Button variant="contained" onClick={saveBoardData}>
-                            {isEdit ? '수정' : '작성'}
-                        </Button>
-                        <Button variant="outlined" onClick={() => navigate('/')}>
-                            취소
-                        </Button>
-                    </Box>
-                </Box>
+            <div className={st.mainWrap}>
+                <div className={st.banner_content}>
+                    <div className={st.form_section}>
+                        <h2 className={st.form_title}>Comment 작성</h2>
+                        <form onSubmit={handleSubmit} className={st.form}>
+                            <div className={st.input_group}>
+                                <label htmlFor="title">제목</label>
+                                <input
+                                    type="text"
+                                    id="title"
+                                    name="title"
+                                    value={formData.title}
+                                    onChange={handleChange}
+                                    required
+                                    className={st.input_field}
+                                    placeholder="제목을 입력하세요"
+                                />
+                            </div>
+                            <div className={st.input_group}>
+                                <label htmlFor="content">내용</label>
+                                <textarea
+                                    id="content"
+                                    name="content"
+                                    value={formData.content}
+                                    onChange={handleChange}
+                                    required
+                                    className={st.textarea_field}
+                                    rows="15"
+                                    placeholder="내용을 입력하세요"
+                                />
+                            </div>
+                            <div className={st.button_group}>
+                                <button type="submit" className={st.submit_button}>
+                                    작성완료
+                                </button>
+                                <button
+                                    type="button"
+                                    className={st.cancel_button}
+                                    onClick={handleCancel}
+                                >
+                                    취소
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
             <Footer />
         </>
     );
-};
+}
 
-export default BoardDetail;
+export default Detail;

@@ -84,7 +84,7 @@ body {
     margin-right: 20px;
     margin-top: 40px;
     margin-bottom: 40px;
-    width: 90%;
+    width: 70%;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
@@ -233,9 +233,9 @@ body {
     width: 90%;
 }
 
-/* 테이블 스타일 */
-.table_section TableContainer {
-    width: 100%;
+.brdTable_title {
+    text-align: center;
+    color: #1abc9c;
 }
 
 .table {
@@ -252,7 +252,6 @@ body {
     padding: 12px;
     text-align: left;
     word-wrap: break-word;
-    /* 긴 텍스트 줄바꿈 */
 }
 
 .table tr:hover {
@@ -268,7 +267,8 @@ body {
 
 
 .brdTable_head tr th {
-    color: #1abc9c;
+    color: #ecf0f1;
+    font-size: 25px;
     font-weight: bold;
     text-align: center;
 }
@@ -280,12 +280,14 @@ body {
 
 
 .brdTable_body tr:hover td {
+
     color: #e74c3c;
     transition: 0.3s;
 }
 
 .brdTable_body td {
     color: #ecf0f1;
+    font-size: 20px;
     text-align: center;
 }
 
@@ -309,13 +311,3 @@ body {
     width: 20%;
 }
 
-
-.createButton {
-    background-color: #1abc9c;
-    color: #fff;
-    margin-top: 20px;
-}
-
-.createButton:hover {
-    background-color: #16a085;
-}

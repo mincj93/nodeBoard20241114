@@ -1,12 +1,73 @@
 /* 기본 레이아웃 */
 .mainWrap {
-    font-family: 'Noto Sans', sans-serif;
-    color: #ecf0f1;
+    min-width: 600px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.banner_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-top: 90px;
+    background-color: #34495e;
+    border-bottom: 1px solid #1abc9c;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.table_section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
     background-color: #2c3e50;
-    margin: 150px auto;
-    max-width: 1200px;
-    padding: 0 20px;
-  }
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid #1abc9c;
+    width: 90%;
+}
+
+.brdTable_title {
+    text-align: center;
+    color: #1abc9c;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.brdTable_head tr th {
+    color: #ecf0f1;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.brdTable_body tr:hover {
+    background-color: #4a6a8b;
+    transition: 0.3s;
+}
+
+.brdTable_body tr:hover td {
+    color: #e74c3c;
+    transition: 0.3s;
+}
+
+.brdTable_body td {
+    color: #ecf0f1;
+    font-size: 20px;
+    text-align: center;
+}
+
+.brdTable_cell_idx { width: 20%; }
+.brdTable_cell_title { 
+    width: 30%;
+    cursor: pointer;
+    text-align: left !important;
+}
+.brdTable_cell_regdt { width: 20%; }
+.brdTable_cell_regid { width: 20%; }
   
   /* 리스트 컨테이너 */
   .listWrapper {

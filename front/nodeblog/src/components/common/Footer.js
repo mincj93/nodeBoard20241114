@@ -4,7 +4,7 @@ import Icon_Email from '@mui/icons-material/Email';
 import Icon_GitHub from '@mui/icons-material/GitHub';
 import Icon_Create from '@mui/icons-material/Create';
 import Icon_LocalPhone from '@mui/icons-material/LocalPhone';
-import st from '../../style/footer.module.css';
+import st from '../../style/common/footer.module.css';
 
 function Footer() {
     const [open, setOpen] = useState(false); // 팝업 열림 상태 관리
@@ -57,7 +57,7 @@ function Footer() {
                                 key={index}
                                 aria-label={item.label}
                                 sx={{
-                                    color: '#ecf0f1',
+                                    color: '#1abc9c',
                                     transition: 'all 0.3s ease',
                                     '&:hover': {
                                         color: '#e74c3c',

@@ -8,7 +8,7 @@ import axios from 'axios';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
 
 // 스타일
-import st from '../../style/main.module.css';
+import st from '../../style/main/main.module.css';
 
 // 이미지
 import me from '../../images/me.jpg';
@@ -24,6 +24,8 @@ const Main = () => {
   const lg = console.log;
   const navigate = useNavigate();
 
+  // 페이지 전환 전 현재 스크롤 위치 저장
+  const scrollPositions = new Map();
 
   const [state, setState] = useState({
     logoList: [logo_react, logo_mui, logo_express, logo_mysql, logo_lightsail],
@@ -36,6 +38,7 @@ const Main = () => {
 
   // logo이미지 한번에 가져오기
   // 이미지 순서가 바뀌어서 안 씀.
+  /* 
   const getLogoList = () => {
     // const reqLogoList = require.context('이미지경로', 하위폴더포함여부 true false, 허용 이미지 확장자);
     const reqLogoList = require.context('../../images/logo', false, /\.(png|jpe?g|svg)$/);
@@ -45,7 +48,7 @@ const Main = () => {
       logoList: logoList
     }));
   }
-
+  */
 
   const getBrdLast5 = () => {
     axios.get(`http://${process.env.REACT_APP_API_URL}/board/getBrdLast5`).then((res) => {
@@ -60,12 +63,14 @@ const Main = () => {
       })
   }
 
+
+
   const goDetail = (idx) => {
-    navigate(`/brdDetail/${idx}`);
+    navigate(`/board/detail/${idx}`);
   }
-  
+
   const goCreate = () => {
-    navigate(`/brdWrite`);
+    navigate(`/board/write`);
   }
 
   useEffect(() => {
@@ -106,13 +111,15 @@ const Main = () => {
           </div>
         </div>
         <div className={st.table_section}>
-          <h2 style={{ textAlign: 'center', color: '#ecf0f1' }}>Comment List</h2>
+          <h2 className={st.brdTable_title}>Comment List</h2>
           <TableContainer
             component={Paper}
             sx={{
               backgroundColor: '#34495e',
               width: '100%',
-              marginTop: '20px'
+              marginTop: '20px',
+              border: '1px solid #1abc9c',
+              boxShadow: '0px 5px 15px rgba(0, 0, 0, 0.3)'
             }}
           >
             <Table >
@@ -136,7 +143,16 @@ const Main = () => {
               </TableBody>
             </Table>
           </TableContainer>
-          <Button variant="contained" className={st.createButton} onClick={goCreate}>
+          <Button variant="contained" sx={{
+            marginTop: '20px',
+            backgroundColor: '#1abc9c',
+            color: '#ecf0f1',
+            width: '50%',
+            alignSelf: 'center',
+            "&:hover": {
+              backgroundColor: '#e74c3c'
+            }
+          }} onClick={goCreate}>
             Comment 작성하기
           </Button>
         </div>

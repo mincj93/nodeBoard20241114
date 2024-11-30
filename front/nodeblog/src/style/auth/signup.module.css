@@ -13,66 +13,34 @@
     background-color: #34495e;
     border-bottom: 1px solid #1abc9c;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    min-height: calc(100vh - 200px);
 }
 
-.form_section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 40px 0;
-    background-color: #2c3e50;
-    border-radius: 8px;
+.signup_container {
+    width: 100%;
+    max-width: 600px;
+    margin: 40px auto;
+}
+
+.signup_paper {
     padding: 30px;
+    background-color: #2c3e50 !important;
+    border: 1px solid #1abc9c;
+    border-radius: 8px;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
-    border: 1px solid #1abc9c;
-    width: 90%;
-    max-width: 1000px;
+    margin-bottom: 40px;
 }
 
-.form_title {
+.signup_paper h2 {
+    color: #ecf0f1;
     text-align: center;
-    color: #1abc9c;
+    margin-bottom: 20px;
     font-size: 28px;
-    margin-bottom: 30px;
 }
 
-.form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.input_group {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.input_group label {
-    color: #ecf0f1;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.input_field, .textarea_field {
-    padding: 12px;
-    background-color: #34495e;
-    border: 1px solid #1abc9c;
-    border-radius: 4px;
-    color: #ecf0f1;
-    font-size: 16px;
-    transition: all 0.3s ease;
-}
-
-.input_field:focus, .textarea_field:focus {
-    outline: none;
-    border-color: #e74c3c;
-    box-shadow: 0 0 5px rgba(26, 188, 156, 0.5);
-}
-
-.textarea_field {
-    resize: vertical;
-    min-height: 200px;
+/* 에러 메시지 스타일 */
+.MuiFormHelperText-root {
+    color: #e74c3c !important;
 }
 
 .button_group {
@@ -91,6 +59,7 @@
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s;
+    width: 150px;
 }
 
 .submit_button {

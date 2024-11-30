@@ -26,29 +26,3 @@
     align-items: center;
     gap: 10px; /* 아이콘과 텍스트 간격 */
 }
-
-.icons li a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none; /* 링크 밑줄 제거 */
-    font-size: 18px; /* 아이콘 및 텍스트 크기 */
-    color: #ecf0f1; /* 기본 텍스트 색상 */
-    transition: all 0.3s ease;
-}
-
-.icons li a:hover {
-    color: #1abc9c; /* hover 시 텍스트 색상 */
-}
-
-/* 아이콘 스타일 */
-.icons li a .MuiSvgIcon-root {
-    font-size: 24px; /* 아이콘 크기 */
-    color: #ecf0f1; /* 아이콘 색상 */
-    transition: all 0.3s ease;
-}
-
-.icons li a:hover .MuiSvgIcon-root {
-    color: #e74c3c; /* hover 시 아이콘 색상 */
-    transform: scale(1.1); /* hover 시 크기 확대 */
-}
