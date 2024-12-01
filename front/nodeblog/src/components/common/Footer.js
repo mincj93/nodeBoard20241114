@@ -24,7 +24,7 @@ function Footer() {
         {
             label: 'Phone No.',
             icon: <Icon_LocalPhone />,
-            content: 'Phone: +82-10-1234-5678',
+            content: 'Phone: +82-10-1234-5zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz678',
             text: 'Phone No.'
         },
         {
@@ -78,57 +78,28 @@ function Footer() {
             </Box>
 
             {/* 팝업 컴포넌트 */}
-            <Dialog 
-                open={open} 
+            <Dialog
+                open={open}
                 onClose={handleClose}
                 PaperProps={{
-                    sx: {
-                        backgroundColor: '#34495e',
-                        color: '#ecf0f1',
-                        minWidth: '300px',
-                        maxWidth: '500px',
-                        width: '90%',
-                        border: '1px solid #1abc9c',
-                        borderRadius: '8px',
-                        boxShadow: '0px 5px 15px rgba(0, 0, 0, 0.3)',
-                    }
+                    className: st.popup_wrap
                 }}
             >
-                <DialogTitle sx={{ 
-                    color: '#1abc9c',
-                    fontSize: '1.5rem',
-                    fontWeight: 'bold',
-                    textAlign: 'center',
-                    borderBottom: '1px solid #1abc9c'
-                }}>
+                <DialogTitle className={st.popup_title}>
                     {dialogContent.title}
                 </DialogTitle>
-                <DialogContent sx={{ 
-                    padding: '20px',
-                    '& .MuiTypography-root': {
-                        fontSize: '1.1rem',
-                        lineHeight: 1.8,
-                        wordBreak: 'break-word'
-                    }
-                }}>
+                <DialogContent className={st.popup_content}>
                     <Typography>{dialogContent.content}</Typography>
                 </DialogContent>
                 <DialogActions sx={{
                     padding: '15px',
                     justifyContent: 'center'
                 }}>
-                    <Button 
-                        onClick={handleClose} 
-                        sx={{
-                            backgroundColor: '#1abc9c',
-                            color: '#ecf0f1',
-                            '&:hover': {
-                                backgroundColor: '#e74c3c'
-                            },
-                            padding: '8px 20px'
-                        }}
+                    <Button
+                        onClick={handleClose}
+                        className={st.popup_close}
                     >
-                        Close
+                        닫기
                     </Button>
                 </DialogActions>
             </Dialog>
