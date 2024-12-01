@@ -78,13 +78,56 @@ function Footer() {
             </Box>
 
             {/* 팝업 컴포넌트 */}
-            <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>{dialogContent.title}</DialogTitle>
-                <DialogContent>
+            <Dialog 
+                open={open} 
+                onClose={handleClose}
+                PaperProps={{
+                    sx: {
+                        backgroundColor: '#34495e',
+                        color: '#ecf0f1',
+                        minWidth: '300px',
+                        maxWidth: '500px',
+                        width: '90%',
+                        border: '1px solid #1abc9c',
+                        borderRadius: '8px',
+                        boxShadow: '0px 5px 15px rgba(0, 0, 0, 0.3)',
+                    }
+                }}
+            >
+                <DialogTitle sx={{ 
+                    color: '#1abc9c',
+                    fontSize: '1.5rem',
+                    fontWeight: 'bold',
+                    textAlign: 'center',
+                    borderBottom: '1px solid #1abc9c'
+                }}>
+                    {dialogContent.title}
+                </DialogTitle>
+                <DialogContent sx={{ 
+                    padding: '20px',
+                    '& .MuiTypography-root': {
+                        fontSize: '1.1rem',
+                        lineHeight: 1.8,
+                        wordBreak: 'break-word'
+                    }
+                }}>
                     <Typography>{dialogContent.content}</Typography>
                 </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose} color="primary">
+                <DialogActions sx={{
+                    padding: '15px',
+                    justifyContent: 'center'
+                }}>
+                    <Button 
+                        onClick={handleClose} 
+                        sx={{
+                            backgroundColor: '#1abc9c',
+                            color: '#ecf0f1',
+                            '&:hover': {
+                                backgroundColor: '#e74c3c'
+                            },
+                            padding: '8px 20px'
+                        }}
+                    >
                         Close
                     </Button>
                 </DialogActions>
