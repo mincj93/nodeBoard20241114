@@ -24,8 +24,6 @@ const Main = () => {
   const lg = console.log;
   const navigate = useNavigate();
 
-  // 페이지 전환 전 현재 스크롤 위치 저장
-  const scrollPositions = new Map();
 
   const [state, setState] = useState({
     logoList: [logo_react, logo_mui, logo_express, logo_mysql, logo_lightsail],
