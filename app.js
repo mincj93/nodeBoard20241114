@@ -17,7 +17,7 @@ const query = require(process.cwd() + '/server/mysql/query/boardQuery')
 // express 설정
 const app = express();
 app.use(express.static(path.join(process.cwd(), '/front/nodeblog/build'))); // react 프론트 경로 연결 1
-app.use(express.static(path.join(__dirname, '/public')));
+// app.use(express.static(path.join(__dirname, '/public')));
 
 // req 객체에서 body에 있는 값 받기위한것 >> express.json 으로 대체
 // app.use(bodyParser.json());
