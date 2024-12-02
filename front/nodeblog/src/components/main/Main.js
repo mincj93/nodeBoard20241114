@@ -50,16 +50,16 @@ const Main = () => {
   }
   */
 
-  const getBrdLast5 = () => {
-    axios.get(`http://${process.env.REACT_APP_API_URL}/board/getBrdLast5`).then((res) => {
+  const getBrdLast5 = async () => {
+    await axios.get(`http://${process.env.REACT_APP_API_URL}/board/getBrdLast5`).then((res) => {
       lg(res.data)
       setState((prevState) => ({
         ...prevState,
         brdList: res.data
       }));
     })
-      .catch(() => {
-        lg('실패함')
+      .catch((err) => {
+        lg('실패함 err == ', err)
       })
   }
 
@@ -102,6 +102,7 @@ const Main = () => {
           </div>
           <div className={st.image_gallery}>
             {logoList.map((imgSrc, idx) => {
+              lg(imgSrc)
               return (
                 <div className={st.image_item} key={idx}>
                   <img src={imgSrc} alt={`Sample ${idx + 1}`} />
