@@ -11,7 +11,7 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 import st from '../../style/main/main.module.css';
 
 // 이미지
-import me from '../../images/me.jpg';
+import me from '../../images/angryDog.jpg';
 import logo_react from '../../images/logo_react.png';
 import logo_mui from '../../images/logo_mui.png';
 import logo_express from '../../images/logo_express.png';
@@ -49,9 +49,10 @@ const Main = () => {
   */
 
   const getBrdLast5 = async () => {
-    lg(process.env.REACT_APP_API_URL);
+
     await axios.get(`http://${process.env.REACT_APP_API_URL}/board/getBrdLast5`).then((res) => {
       lg(res.data)
+      lg(process.env.REACT_APP_API_URL);
       setState((prevState) => ({
         ...prevState,
         brdList: res.data
@@ -73,7 +74,13 @@ const Main = () => {
   }
 
   useEffect(() => {
-    // getLogoList(); 순서가 바뀌어서 들어오기에 그냥 6개라 import로 바꿈
+    // 각 이미지 경로 확인
+    console.log('logo_react:', logo_react);
+    console.log('logo_mui:', logo_mui);
+    console.log('logo_express:', logo_express);
+    console.log('logo_mysql:', logo_mysql);
+    console.log('logo_lightsail:', logo_lightsail);
+    
     getBrdLast5();
   }, [])
 
@@ -101,7 +108,7 @@ const Main = () => {
           </div>
           <div className={st.image_gallery}>
             {logoList.map((imgSrc, idx) => {
-              lg(imgSrc)
+              lg("imgSrc == ", imgSrc)
               return (
                 <div className={st.image_item} key={idx}>
                   <img src={imgSrc} alt={`Sample ${idx + 1}`} />

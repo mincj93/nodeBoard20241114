@@ -3,9 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import st from '../../style/board/detail.module.css';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
-import { useScrollToTop } from '../../hooks/useScrollToTop';
 function Detail() {
-    useScrollToTop();
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         title: '',
