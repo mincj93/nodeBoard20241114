@@ -23,8 +23,40 @@ app.use(express.static(path.join(__dirname, '/public')));
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
+// CORS 설정을 더 구체적으로 정의
+const corsOptions = {
+    origin: function (origin, callback) {
+        const allowedOrigins = [
+            'http://43.202.34.90',
+            'http://localhost:80',
+            // 필요한 도메인 추가
+        ];
+        
+        // origin이 없거나(같은 도메인) 허용된 도메인인 경우
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    exposedHeaders: ['Content-Range', 'X-Content-Range']
+};
+
+// CORS 미들웨어를 라우터보다 먼저 적용
+app.use(cors(corsOptions));
+
+// Express 미들웨어 순서 조정
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// 정적 파일 제공 설정
+app.use(express.static(path.join(process.cwd(), '/front/nodeblog/build')));
 
 // 라우터 설정
 app.use('/main', routerController.mainRouter)
@@ -38,8 +70,15 @@ app.engine('html', require('ejs').renderFile);
 // -------------------------------------------------
 // 사용자 정의
 const lg = console.log;
-const frontPath = path.resolve(process.cwd() + '/front');
 
+
+// Express 서버에 CORS 디버깅 미들웨어 추가
+app.use((req, res, next) => {
+    console.log('Request Origin:', req.headers.origin);
+    console.log('Request Method:', req.method);
+    console.log('Request Headers:', req.headers);
+    next();
+});
 
 // -------------------------------------------------
 // API
@@ -47,6 +86,8 @@ app.get('/', function (요청, 응답) {
     lg(path.join(process.cwd(), '/front/nodeblog/build/index.html'));
     응답.sendFile(path.join(process.cwd(), '/front/nodeblog/build/index.html'));
 });
+
+
 
 
 app.listen(80, function () {
