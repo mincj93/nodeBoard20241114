@@ -49,6 +49,7 @@ const Main = () => {
   */
 
   const getBrdLast5 = async () => {
+    lg(process.env.REACT_APP_API_URL);
     await axios.get(`http://${process.env.REACT_APP_API_URL}/board/getBrdLast5`).then((res) => {
       lg(res.data)
       setState((prevState) => ({
