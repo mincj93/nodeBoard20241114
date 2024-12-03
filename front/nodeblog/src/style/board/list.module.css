@@ -180,8 +180,24 @@
 }
 
 .pagination li.active {
-  background-color: #1abc9c;
-  /* 현재 페이지 배경색 */
+  background-color: #1abc9c !important;
+}
+
+.pagination li.active button,
+.pagination li.active a {
+  color: #ffffff !important;
+  font-weight: bold;
+}
+
+.pagination li button,
+.pagination li a {
+  color: #ecf0f1;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .buttonStyle {
@@ -196,4 +212,21 @@
 
 .buttonStyle:hover {
   background-color: #e74c3c;
+}
+
+
+.pagination :global(.MuiPaginationItem-root) {
+  color: #ecf0f1;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.pagination :global(.MuiPaginationItem-root:hover) {
+  background-color: #e74c3c;
+}
+
+.pagination :global(.Mui-selected) {
+  background-color: #1abc9c;
+  color: #ffffff;
+  font-weight: bold;
 }

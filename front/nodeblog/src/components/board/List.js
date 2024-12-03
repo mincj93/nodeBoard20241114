@@ -116,7 +116,7 @@ const BoardList = () => {
                         <Stack spacing={2} className={st.pagination_wrap}>
                             <Pagination
                                 count={3}
-                                page={1}
+                                page={pageNum}
                                 onChange={handlePageChange}
                                 className={st.pagination}
                             />
