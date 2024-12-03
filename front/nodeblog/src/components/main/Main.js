@@ -10,13 +10,7 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 // 스타일
 import st from '../../style/main/main.module.css';
 
-// 이미지
-import me from '../../images/angryDog.jpg';
-import logo_react from '../../images/logo_react.png';
-import logo_mui from '../../images/logo_mui.png';
-import logo_express from '../../images/logo_express.png';
-import logo_mysql from '../../images/logo_mysql.png';
-import logo_lightsail from '../../images/logo_lightsail.png';
+// 모듈
 import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
 
@@ -26,7 +20,7 @@ const Main = () => {
 
 
   const [state, setState] = useState({
-    logoList: [logo_react, logo_mui, logo_express, logo_mysql, logo_lightsail],
+    logoList: ['logo_react.png', 'logo_mui.png', 'logo_express.png', 'logo_mysql.png', 'logo_lightsail.png'],
     // logoList: [],
     brdList: [],
   });
@@ -74,13 +68,7 @@ const Main = () => {
   }
 
   useEffect(() => {
-    // 각 이미지 경로 확인
-    console.log('logo_react:', logo_react);
-    console.log('logo_mui:', logo_mui);
-    console.log('logo_express:', logo_express);
-    console.log('logo_mysql:', logo_mysql);
-    console.log('logo_lightsail:', logo_lightsail);
-    
+
     getBrdLast5();
   }, [])
 
@@ -89,7 +77,7 @@ const Main = () => {
       <Header />
       <div className={st.banner_content}>
         <div className={st.profile_photo}>
-          <img src={me} alt="My Profile" />
+          <img src="/angryDog.jpg" alt="My Profile" />
         </div>
         <div className={st.profile_description}>
           <p className={st.name}>민창준입니다.</p>
@@ -111,7 +99,7 @@ const Main = () => {
               lg("imgSrc == ", imgSrc)
               return (
                 <div className={st.image_item} key={idx}>
-                  <img src={imgSrc} alt={`Sample ${idx + 1}`} />
+                  <img src={`/images/logos/${imgSrc}`} alt={`Sample ${idx + 1}`} />
                 </div>
               )
             })}
