@@ -9,4 +9,7 @@ boardQuery.getBrdLast5 = 'select * from board order by regdt desc limit 5';
 // 게시물 상세
 boardQuery.getBrdDtl = `select * from board where idx = ?`;
 
+// 5개씩 페이징
+boardQuery.getBrdListPaging = `select * from board order by regdt desc limit 0, 5`;
+
 module.exports = boardQuery;

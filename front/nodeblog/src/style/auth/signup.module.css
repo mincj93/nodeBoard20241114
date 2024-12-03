@@ -43,41 +43,29 @@
     color: #e74c3c !important;
 }
 
+.file_input {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #ecf0f1;
+}
+
 .button_group {
     display: flex;
-    gap: 15px;
-    justify-content: center;
-    margin-top: 20px;
-    padding-top: 20px;
+    justify-content: space-between;
 }
 
 .submit_button, .cancel_button {
-    padding: 12px 30px;
+    background-color: #1abc9c;
+    color: #fff;
     border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-    width: 150px;
 }
 
-.submit_button {
-    background-color: #1abc9c;
-    color: #ecf0f1;
-}
-
-.submit_button:hover {
-    background-color: #e74c3c;
-}
-
-.cancel_button {
-    background-color: #7f8c8d;
-    color: #ecf0f1;
-}
-
-.cancel_button:hover {
-    background-color: #95a5a6;
+.submit_button:hover, .cancel_button:hover {
+    background-color: #16a085;
 }
 
 /* 반응형 디자인 */

@@ -15,19 +15,30 @@ import Footer from '../common/Footer';
 // 스타일
 import st from '../../style/board/list.module.css';
 
+// 컴포넌트
 const BoardList = () => {
     const lg = console.log;
     const navigate = useNavigate();
+
+
+    // 상태
     const [state, setState] = useState({
         brdList: [],
+        pageNum: 1,
+        cntPerPage: 5,
     });
 
-
-    const { brdList } = state;
+    // 상태 추출
+    const { brdList, pageNum, cntPerPage } = state;
 
     // 게시글 목록 가져오기
     const getBrdLast5 = () => {
-        axios.get(`http://${process.env.REACT_APP_API_URL}/board/getAllBrdList`).then((res) => {
+        axios.post(`http://${process.env.REACT_APP_API_URL}/board/getBrdListPaging`, {
+            params: {
+                pageNum,
+                cntPerPage
+            }
+        }).then((res) => {
             lg(res.data)
             setState((prevState) => ({
                 ...prevState,
@@ -37,6 +48,16 @@ const BoardList = () => {
             .catch(() => {
                 lg('실패함')
             })
+    }
+
+    // 페이지 변경 함수
+    const handlePageChange = (e, page) => {
+        // lg('페이지 변경 e == ', e.target.value) // 빈값임.
+        lg('페이지 변경 번호 == ', page)
+        setState((prevState) => ({
+            ...prevState,
+            pageNum: page
+        }));
     }
 
     useEffect(() => {
@@ -92,8 +113,13 @@ const BoardList = () => {
 
                         </TableContainer>
 
-                        <Stack spacing={2} className={st.pagination}>
-                            <Pagination count={10}  />
+                        <Stack spacing={2} className={st.pagination_wrap}>
+                            <Pagination
+                                count={3}
+                                page={1}
+                                onChange={handlePageChange}
+                                className={st.pagination}
+                            />
                         </Stack>
                         <Button
                             variant="contained"

@@ -131,8 +131,39 @@
 }
 
 
+
+.pagination_wrap {
+  margin: 20px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .pagination {
-  margin-top: 20px;
-  background-color: #e74c3c;
-  align-items: center; 
+  display: flex;
+  justify-content: center;
+}
+
+.pagination ul {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.pagination ul li {
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.pagination ul li:hover {
+  background-color: rgba(26, 188, 156, 0.2);
+}
+
+.pagination ul li.Mui-selected {
+  background-color: #1abc9c;
+  color: #ffffff;
+}
+
+.pagination ul li.Mui-selected:hover {
+  background-color: #16a085;
 }
