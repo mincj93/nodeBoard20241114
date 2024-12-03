@@ -17,7 +17,7 @@ const query = require(process.cwd() + '/server/mysql/query/boardQuery')
 // express 설정
 const app = express();
 // app.use(express.static(path.join(process.cwd(), '/front/nodeblog/build'))); // react 프론트 경로 연결 1
-app.use('/main',express.static(path.join(__dirname, '/public/build')));
+app.use(express.static(path.join(__dirname, '/public/build')));
 
 // req 객체에서 body에 있는 값 받기위한것 >> express.json 으로 대체
 // app.use(bodyParser.json());
@@ -44,7 +44,7 @@ const lg = console.log;
 // -------------------------------------------------
 // API
 app.get('/', function (요청, 응답) {
-    응답.sendFile(path.join(process.cwd(), '/main/index.html'));
+    응답.sendFile(path.join(process.cwd(), '/index.html'));
 });
 
 
