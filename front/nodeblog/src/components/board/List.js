@@ -4,7 +4,11 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 
 // MUI Components
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, Paper, Typography, Box } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, Paper } from '@mui/material';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+
+// 컴포넌트
 import Header from '../common/Header';
 import Footer from '../common/Footer';
 
@@ -23,7 +27,7 @@ const BoardList = () => {
 
     // 게시글 목록 가져오기
     const getBrdLast5 = () => {
-        axios.get(`http://${process.env.REACT_APP_API_URL}/board/getBrdLast5`).then((res) => {
+        axios.get(`http://${process.env.REACT_APP_API_URL}/board/getAllBrdList`).then((res) => {
             lg(res.data)
             setState((prevState) => ({
                 ...prevState,
@@ -85,7 +89,12 @@ const BoardList = () => {
                                     ))}
                                 </TableBody>
                             </Table>
+
                         </TableContainer>
+
+                        <Stack spacing={2} className={st.pagination}>
+                            <Pagination count={10}  />
+                        </Stack>
                         <Button
                             variant="contained"
                             onClick={goCreate}

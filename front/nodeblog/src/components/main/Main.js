@@ -8,6 +8,7 @@ import axios from 'axios';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
 
 // 스타일
+// 이후에 react 프로젝트 커스터마이징 도구인 "craco" 를 사용해서 alias 설정을 해보자
 import st from '../../style/main/main.module.css';
 
 // 모듈
@@ -18,29 +19,15 @@ const Main = () => {
   const lg = console.log;
   const navigate = useNavigate();
 
-
+  // state Obj
   const [state, setState] = useState({
     logoList: ['logo_react.png', 'logo_mui.png', 'logo_express.png', 'logo_mysql.png', 'logo_lightsail.png'],
     // logoList: [],
     brdList: [],
   });
 
-
+  // state 분해
   const { logoList, brdList } = state;
-
-  // logo이미지 한번에 가져오기
-  // 이미지 순서가 바뀌어서 안 씀.
-  /* 
-  const getLogoList = () => {
-    // const reqLogoList = require.context('이미지경로', 하위폴더포함여부 true false, 허용 이미지 확장자);
-    const reqLogoList = require.context('../../images/logo', false, /\.(png|jpe?g|svg)$/);
-    const logoList = reqLogoList.keys().map(item => reqLogoList(item));
-    setState((prevState) => ({
-      ...prevState,
-      logoList: logoList
-    }));
-  }
-  */
 
   const getBrdLast5 = async () => {
 
@@ -107,17 +94,8 @@ const Main = () => {
         </div>
         <div className={st.table_section}>
           <h2 className={st.brdTable_title}>Comment List</h2>
-          <TableContainer
-            component={Paper}
-            sx={{
-              backgroundColor: '#34495e',
-              width: '100%',
-              marginTop: '20px',
-              border: '1px solid #1abc9c',
-              boxShadow: '0px 5px 15px rgba(0, 0, 0, 0.3)'
-            }}
-          >
-            <Table >
+          <TableContainer component={Paper} className={st.tableContainer}>
+            <Table>
               <TableHead className={st.brdTable_head}>
                 <TableRow>
                   <TableCell>번호</TableCell>
@@ -128,7 +106,7 @@ const Main = () => {
               </TableHead>
               <TableBody className={st.brdTable_body}>
                 {brdList.map((row, idx) => (
-                  <TableRow key={idx} className={st.brdTable_row} >
+                  <TableRow key={idx} className={st.brdTable_row}>
                     <TableCell className={st.brdTable_cell_idx}>{idx + 1}</TableCell>
                     <TableCell className={st.brdTable_cell_title} onClick={() => goDetail(row.idx)}>{row.title}</TableCell>
                     <TableCell className={st.brdTable_cell_regdt}>{dayjs(row.regdt).format('YYYY-MM-DD')}</TableCell>
@@ -150,6 +128,8 @@ const Main = () => {
           }} onClick={goCreate}>
             Comment 작성하기
           </Button>
+
+
         </div>
       </div>
       <Footer />

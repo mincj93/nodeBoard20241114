@@ -1,123 +1,138 @@
 /* 기본 레이아웃 */
 .mainWrap {
-    min-width: 600px;
-    max-width: 100%;
-    margin: 0 auto;
+  min-width: 600px;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 .banner_content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    margin-top: 90px;
-    background-color: #34495e;
-    border-bottom: 1px solid #1abc9c;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin-top: 90px;
+  background-color: #34495e;
+  border-bottom: 1px solid #1abc9c;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .table_section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 40px;
-    margin-bottom: 40px;
-    background-color: #2c3e50;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
-    border: 1px solid #1abc9c;
-    width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  background-color: #2c3e50;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  border: 1px solid #1abc9c;
+  width: 90%;
 }
 
 .brdTable_title {
-    text-align: center;
-    color: #1abc9c;
-    font-size: 28px;
-    margin-bottom: 20px;
+  text-align: center;
+  color: #1abc9c;
+  font-size: 28px;
+  margin-bottom: 20px;
 }
 
 .brdTable_head tr th {
-    color: #ecf0f1;
-    font-size: 25px;
-    font-weight: bold;
-    text-align: center;
+  color: #ecf0f1;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
 }
 
 .brdTable_body tr:hover {
-    background-color: #4a6a8b;
-    transition: 0.3s;
+  background-color: #4a6a8b;
+  transition: 0.3s;
 }
 
 .brdTable_body tr:hover td {
-    color: #e74c3c;
-    transition: 0.3s;
+  color: #e74c3c;
+  transition: 0.3s;
 }
 
 .brdTable_body td {
-    color: #ecf0f1;
-    font-size: 20px;
-    text-align: center;
+  color: #ecf0f1;
+  font-size: 20px;
+  text-align: center;
 }
 
-.brdTable_cell_idx { width: 20%; }
-.brdTable_cell_title { 
-    width: 30%;
-    cursor: pointer;
-    text-align: left !important;
+.brdTable_cell_idx {
+  width: 20%;
 }
-.brdTable_cell_regdt { width: 20%; }
-.brdTable_cell_regid { width: 20%; }
-  
-  /* 리스트 컨테이너 */
-  .listWrapper {
-    padding: 30px;
-    border-radius: 10px;
-    background-color: #34495e;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
-  }
-  
-  /* 제목 스타일 */
-  .listTitle {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #1abc9c;
-  }
-  
-  /* 테이블 스타일 */
-  .tableRow {
-    cursor: pointer;
-  }
-  
-  .tableRow:hover {
-    background-color: #1abc9c;
-    transition: 0.3s;
-  }
-  
-  .MuiTableCell-root {
-    color: #ecf0f1;
-    border-bottom: 1px solid #1abc9c;
-  }
-  
-  .MuiTableCell-head {
-    color: #bdc3c7;
-    font-weight: bold;
-  }
-  
-  /* 버튼 스타일 */
-  .actionButtons {
-    margin-top: 20px;
-    text-align: right;
-  }
-  
-  .createButton {
-    background-color: #1abc9c;
-    color: #fff;
-  }
-  
-  .createButton:hover {
-    background-color: #16a085;
-  }
-  
+
+.brdTable_cell_title {
+  width: 30%;
+  cursor: pointer;
+  text-align: left !important;
+}
+
+.brdTable_cell_regdt {
+  width: 20%;
+}
+
+.brdTable_cell_regid {
+  width: 20%;
+}
+
+/* 리스트 컨테이너 */
+.listWrapper {
+  padding: 30px;
+  border-radius: 10px;
+  background-color: #34495e;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* 제목 스타일 */
+.listTitle {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #1abc9c;
+}
+
+/* 테이블 스타일 */
+.tableRow {
+  cursor: pointer;
+}
+
+.tableRow:hover {
+  background-color: #1abc9c;
+  transition: 0.3s;
+}
+
+.MuiTableCell-root {
+  color: #ecf0f1;
+  border-bottom: 1px solid #1abc9c;
+}
+
+.MuiTableCell-head {
+  color: #bdc3c7;
+  font-weight: bold;
+}
+
+/* 버튼 스타일 */
+.actionButtons {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.createButton {
+  background-color: #1abc9c;
+  color: #fff;
+}
+
+.createButton:hover {
+  background-color: #16a085;
+}
+
+
+.pagination {
+  margin-top: 20px;
+  background-color: #e74c3c;
+  align-items: center; 
+}
