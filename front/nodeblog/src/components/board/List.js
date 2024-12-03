@@ -124,18 +124,7 @@ const BoardList = () => {
                         <Button
                             variant="contained"
                             onClick={goCreate}
-                            sx={{
-                                marginTop: '20px',
-                                backgroundColor: '#1abc9c',
-                                color: '#ecf0f1',
-                                width: '50%',
-                                alignSelf: 'center',
-                                display: 'block',
-                                margin: '20px auto 0',
-                                "&:hover": {
-                                    backgroundColor: '#e74c3c'
-                                }
-                            }}
+                            className={st.buttonStyle}
                         >
                             Comment 작성하기
                         </Button>
