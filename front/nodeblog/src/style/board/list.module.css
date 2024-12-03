@@ -187,7 +187,7 @@
 .buttonStyle {
   margin-top: 20px;
   background-color: #1abc9c;
-  color: #ecf0f1;
+  /* color: #ecf0f1; */
   width: 50%;
   align-self: center;
   display: block;
