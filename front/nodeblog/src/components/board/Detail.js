@@ -81,7 +81,7 @@ const Detail = () => {
     }
 
     // 저장
-    const postSave = () => {
+    const postSave = async () => {
         lg('postSave')
         const params = {
             title: detailData.title,
@@ -89,10 +89,10 @@ const Detail = () => {
             regid: detailData?.regid || '1'
         }
 
-        axios.post(`http://${process.env.REACT_APP_API_URL}/board/insertBrd`, params).then((res) => {
-            lg('성공')
-        }).catch(() => {
-            lg('실패함')
+        await axios.post(`http://${process.env.REACT_APP_API_URL}/board/insertBrd`, params).then((res) => {
+            lg('성공 == ', res)
+        }).catch((err) => {
+            lg('실패함 == ', err)
         })
     }
 
