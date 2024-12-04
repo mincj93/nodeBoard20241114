@@ -126,7 +126,7 @@ const Detail = () => {
                                 </div>
                                 <div className={st.info_item}>
                                     <label>등록일자:</label>
-                                    <span>{detailData?.regdt}</span>
+                                    <span>{dayjs(detailData?.regdt).format('YYYY년 MM월 DD일 HH:mm:ss')}</span>
                                 </div>
                             </div>
 
