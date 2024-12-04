@@ -54,7 +54,8 @@
     font-weight: bold;
 }
 
-.input_field, .textarea_field {
+.input_field,
+.textarea_field {
     padding: 12px;
     background-color: #34495e;
     border: 1px solid #1abc9c;
@@ -64,7 +65,8 @@
     transition: all 0.3s ease;
 }
 
-.input_field:focus, .textarea_field:focus {
+.input_field:focus,
+.textarea_field:focus {
     outline: none;
     border-color: #e74c3c;
     box-shadow: 0 0 5px rgba(26, 188, 156, 0.5);
@@ -83,7 +85,8 @@
     padding-top: 20px;
 }
 
-.submit_button, .cancel_button {
+.submit_button,
+.cancel_button {
     padding: 12px 30px;
     border: none;
     border-radius: 4px;
@@ -122,7 +125,55 @@
         flex-direction: column;
     }
 
-    .submit_button, .cancel_button {
+    .submit_button,
+    .cancel_button {
         width: 100%;
     }
+}
+
+.info_group {
+    display: flex;
+    gap: 2rem;
+    font-size: 16px;
+    align-items: right;
+}
+
+.info_item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.info_item label {
+    font-weight: 600;
+    color: #ecf0f1;
+}
+
+.info_item span {
+    color: #ecf0f1;
+}
+
+.file_upload_area {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+}
+
+.file_input {
+
+    padding: 12px;
+    background-color: #34495e;
+    border: 1px solid #1abc9c;
+    border-radius: 4px;
+    color: #ecf0f1;
+    font-size: 16px;
+}
+
+.file_name {
+    font-size: 0.9rem;
+    color: #ecf0f1;
+    padding: 0.5rem;
+    background-color: #34495e;
+    word-break: break-all;
 }

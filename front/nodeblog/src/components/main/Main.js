@@ -22,7 +22,6 @@ const Main = () => {
   // state Obj
   const [state, setState] = useState({
     logoList: ['logo_react.png', 'logo_mui.png', 'logo_express.png', 'logo_mysql.png', 'logo_lightsail.png'],
-    // logoList: [],
     brdList: [],
   });
 
@@ -32,8 +31,8 @@ const Main = () => {
   const getBrdLast5 = async () => {
 
     await axios.get(`http://${process.env.REACT_APP_API_URL}/board/getBrdLast5`).then((res) => {
-      lg(res.data)
-      lg(process.env.REACT_APP_API_URL);
+      // lg(res.data)
+      // lg(process.env.REACT_APP_API_URL);
       setState((prevState) => ({
         ...prevState,
         brdList: res.data
@@ -83,7 +82,6 @@ const Main = () => {
           </div>
           <div className={st.image_gallery}>
             {logoList.map((imgSrc, idx) => {
-              lg("imgSrc == ", imgSrc)
               return (
                 <div className={st.image_item} key={idx}>
                   <img src={`/images/logos/${imgSrc}`} alt={`Sample ${idx + 1}`} />

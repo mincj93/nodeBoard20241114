@@ -5,11 +5,11 @@ import dayjs from 'dayjs';
 
 // MUI Components
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, Paper } from '@mui/material';
-import Pagination from '@mui/material/Pagination';
+// import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
 // 페이징 개똥이라 아래거 쓰기.
-// import Pagination from "react-js-pagination";
+import Pagination from "react-js-pagination";
 // https://cotak.tistory.com/112 참고
 
 
@@ -31,12 +31,13 @@ const BoardList = () => {
         brdList: [],
         pageNum: 1,
         cntPerPage: 5,
-        totalPageCnt: 4
+        totalPageCnt: 0,
     });
 
     // 상태 추출
     const { brdList, pageNum, cntPerPage, totalPageCnt } = state;
 
+    // 기능
     // 게시글 목록 가져오기
     const getBrdListPaging = () => {
         const params = {
@@ -45,10 +46,14 @@ const BoardList = () => {
         }
 
         axios.post(`http://${process.env.REACT_APP_API_URL}/board/getBrdListPaging`, params).then((res) => {
-            lg(res.data)
+            // TODO 프로시저를 통해서 총 개수와 목록을 받아옴. 근데 이중배열로 들어오기 때문에 좀 더 쉽게 찾도록 수정할 필요가 있다.
+            lg('totalPageCnt == ', res.data[0][0].total_count)
+            lg('brdList == ', res.data[1])
+            const resData = res.data;
             setState((prevState) => ({
                 ...prevState,
-                brdList: res.data
+                totalPageCnt: res.data[0][0].total_count,
+                brdList: resData[1],
             }));
         })
             .catch(() => {
@@ -57,18 +62,13 @@ const BoardList = () => {
     }
 
     // 페이지 변경 함수
-    const handlePageChange = (e, page) => {
-        // lg('페이지 변경 e == ', e.target.value) // 빈값임.
+    const onChangePageNum = (page) => {
         lg('페이지 변경 번호 == ', page)
         setState((prevState) => ({
             ...prevState,
             pageNum: page
         }));
     }
-
-    useEffect(() => {
-        getBrdListPaging();
-    }, [pageNum, cntPerPage]);
 
     const goDetail = (idx) => {
         navigate(`/board/detail/${idx}`); // 상세보기 페이지로 이동
@@ -78,13 +78,22 @@ const BoardList = () => {
         navigate('/board/write'); // 작성 페이지로 이동
     };
 
+    useEffect(() => {
+        getBrdListPaging();
+    }, [pageNum, cntPerPage]);
+
     return (
         <>
             <Header />
             <div className={st.mainWrap}>
                 <div className={st.banner_content}>
                     <div className={st.table_section}>
-                        <h2 className={st.brdTable_title}>Comment List</h2>
+                        <div className={st.header_section}>
+                            <h2 className={st.brdTable_title}>Comment List</h2>
+                        </div>
+                        <div className={st.total_count}>
+                            <div className={st.total_count}>총 {totalPageCnt}건</div>
+                        </div>
                         <TableContainer
                             component={Paper}
                             sx={{
@@ -119,12 +128,17 @@ const BoardList = () => {
 
                         </TableContainer>
 
+
                         <Stack spacing={2} className={st.pagination_wrap}>
                             <Pagination
-                                count={totalPageCnt}
-                                page={pageNum}
-                                onChange={handlePageChange}
-                                className={st.pagination}
+                                activePage={pageNum}
+                                itemsCountPerPage={cntPerPage}
+                                totalItemsCount={totalPageCnt}
+                                pageRangeDisplayed={5}
+                                prevPageText={"‹"}
+                                nextPageText={"›"}
+                                onChange={onChangePageNum}
+                                className={st.pagination} // Ensure this matches your CSS class
                             />
                         </Stack>
                         <Button

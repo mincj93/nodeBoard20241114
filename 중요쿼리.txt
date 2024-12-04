@@ -120,3 +120,36 @@ create procedure node.insertBrd(ttl(varchar 10), ctt(varchar (1000) rid(varchar 
 begin
 	INSERT  INTO board (title, content, regid) values (ttl, ctt, rid);
 end;
+
+
+
+-- 총 개수 및 페이지별 목록 호출 한번에 하는 프로시저. 이중배열로 받아오기 때문에 너무 복잡함. 수정 필요.
+CREATE PROCEDURE GET_BOARD_LIST_WITH_COUNT(
+    IN page_number INT,
+    IN items_per_page INT
+)
+BEGIN
+    DECLARE offset_value INT;
+    DECLARE total_count INT;
+    
+    -- 총 개수 조회
+    SELECT COUNT(*) INTO total_count
+    FROM board;
+--     WHERE del_yn = 'N';
+    
+    -- 오프셋 계산
+    SET offset_value = (page_number - 1) * items_per_page;
+    
+    -- 결과를 두 개의 결과셋으로 반환
+    -- 첫 번째 결과셋: 총 개수
+    SELECT total_count as total_count;
+    
+    -- 두 번째 결과셋: 페이징된 게시글 목록
+    SELECT 
+        *
+    FROM board
+--     WHERE del_yn = 'N'
+    ORDER BY idx DESC
+    LIMIT items_per_page OFFSET offset_value;
+    
+END

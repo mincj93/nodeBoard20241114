@@ -19,7 +19,7 @@ const Detail = () => {
     // 상태
     const [state, setState] = useState({
         idx: usp?.idx,
-        data: {
+        detailData: {
             idx: '',
             title: '',
             content: '',
@@ -28,15 +28,31 @@ const Detail = () => {
         },
     });
 
+    const [selectedFile, setSelectedFile] = useState(null);  // 추가: 파일 상태
+
     // 상태 추출
-    const { idx, data } = state;
+    const { idx, detailData } = state;
 
 
     // 상태 변경 함수들
     const onChangeTitle = (e) => {
         setState(prevState => ({
             ...prevState,
-            title: e.target.value
+            detailData: {
+                ...detailData,
+                title: e.target.value
+            }
+        }));
+    };
+
+    // 내용 변경
+    const onChangeContent = (e) => {
+        setState(prevState => ({
+            ...prevState,
+            detailData: {
+                ...detailData,
+                content: e.target.value
+            }
         }));
     };
 
@@ -57,16 +73,37 @@ const Detail = () => {
             lg(res.data[0])
             setState((prevState) => ({
                 ...prevState,
-                data: res.data[0]
+                detailData: res.data[0]
             }));
+        }).catch(() => {
+            lg('실패함')
         })
-            .catch(() => {
-                lg('실패함')
-            })
     }
 
-    const handleCancel = () => {
+    // 저장
+    const postSave = () => {
+        lg('postSave')
+        const params = {
+            title: detailData.title,
+            content: detailData.content,
+            regid: detailData?.regid || '1'
+        }
+
+        axios.post(`http://${process.env.REACT_APP_API_URL}/board/insertBrd`, params).then((res) => {
+            lg('성공')
+        }).catch(() => {
+            lg('실패함')
+        })
+    }
+
+    // 취소
+    const onCancel = () => {
         navigate(-1);
+    };
+
+    // 파일 선택 핸들러 추가
+    const handleFileChange = (e) => {
+        setSelectedFile(e.target.files[0]);
     };
 
     useEffect(() => {
@@ -80,14 +117,26 @@ const Detail = () => {
                 <div className={st.banner_content}>
                     <div className={st.form_section}>
                         <h2 className={st.form_title}>Comment 작성</h2>
-                        <div onSubmit={handleSubmit} className={st.form}>
+                        <div className={st.form}>
+                            {/* 작성자와 등록일자 추가 */}
+                            <div className={st.info_group}>
+                                <div className={st.info_item}>
+                                    <label>작성자:</label>
+                                    <span>{detailData?.regid}</span>
+                                </div>
+                                <div className={st.info_item}>
+                                    <label>등록일자:</label>
+                                    <span>{detailData?.regdt}</span>
+                                </div>
+                            </div>
+
                             <div className={st.input_group}>
                                 <label htmlFor="title">제목</label>
                                 <input
                                     type="text"
                                     id="title"
                                     name="title"
-                                    value={data.title}
+                                    value={detailData?.title}
                                     onChange={onChangeTitle}
                                     required
                                     className={st.input_field}
@@ -99,22 +148,39 @@ const Detail = () => {
                                 <textarea
                                     id="content"
                                     name="content"
-                                    value={data.content}
-                                    // onChange={handleChange}
+                                    value={detailData?.content}
+                                    onChange={onChangeContent}
                                     required
                                     className={st.textarea_field}
                                     rows="15"
                                     placeholder="내용을 입력하세요"
                                 />
                             </div>
+                            {/* 파일 업로드 영역 추가 */}
+                            {/* <div className={st.input_group}>
+                                <label htmlFor="file">첨부파일</label>
+                                <div className={st.file_upload_area}>
+                                    <input
+                                        type="file"
+                                        id="file"
+                                        onChange={handleFileChange}
+                                        className={st.file_input}
+                                    />
+                                    {selectedFile && (
+                                        <div className={st.file_name}>
+                                            {selectedFile.name}
+                                        </div>
+                                    )}
+                                </div>
+                            </div> */}
                             <div className={st.button_group}>
-                                <button type="submit" className={st.submit_button}>
+                                <button className={st.submit_button} onClick={postSave}>
                                     작성완료
                                 </button>
                                 <button
                                     type="button"
                                     className={st.cancel_button}
-                                    onClick={handleCancel}
+                                    onClick={onCancel}
                                 >
                                     취소
                                 </button>
