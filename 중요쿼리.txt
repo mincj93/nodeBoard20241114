@@ -86,3 +86,37 @@ CREATE TABLE `board` (
 ) ;
 
 
+
+
+
+
+insert into board (title, content, regid) values ('제목4','내용4','4');
+insert into board (title, content, regid) values ('제목5','내용5','5');
+insert into board (title, content, regid) values ('제목6','내용6','6');
+
+SELECT * from board;
+
+commit;
+
+select * from board order by idx desc limit 0, 10 ;
+
+
+SELECT *
+FROM board
+order by idx desc 
+-- where title like %키워드% -- 검색 있을때 
+limit 5  -- 한 페이지당 목록 개수
+offset 5; -- 한 페이지당 목록 개수 x 페이지넘버 -1
+
+create procedure node.getBrdTotal()
+begin
+	select count(*) from board;
+end;
+
+CALL getBrdTotal();
+
+
+create procedure node.insertBrd(ttl(varchar 10), ctt(varchar (1000) rid(varchar 10))
+begin
+	INSERT  INTO board (title, content, regid) values (ttl, ctt, rid);
+end;
