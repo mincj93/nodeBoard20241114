@@ -175,7 +175,7 @@ const Detail = () => {
                             </div> */}
                             <div className={st.button_group}>
                                 <button className={st.submit_button} onClick={postSave}>
-                                    작성완료
+                                    작성완료~
                                 </button>
                                 <button
                                     type="button"
