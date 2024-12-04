@@ -53,7 +53,6 @@ const Main = () => {
     navigate(`/board/write`);
   }
 
-  // 빌드 왜 안되냐?
   useEffect(() => {
 
     getBrdLast5();

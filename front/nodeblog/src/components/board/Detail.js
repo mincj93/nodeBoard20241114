@@ -92,7 +92,7 @@ const Detail = () => {
         await axios.post(`http://${process.env.REACT_APP_API_URL}/board/insertBrd`, params).then((res) => {
             lg('성공 == ', res)
         }).catch((err) => {
-            lg('실패함 == ', err)
+            lg('실패함')
         })
     }
 
@@ -175,7 +175,7 @@ const Detail = () => {
                             </div> */}
                             <div className={st.button_group}>
                                 <button className={st.submit_button} onClick={postSave}>
-                                    작성완료~
+                                    작성완료
                                 </button>
                                 <button
                                     type="button"
