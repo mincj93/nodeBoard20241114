@@ -8,6 +8,11 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Butto
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
+// 페이징 개똥이라 아래거 쓰기.
+// import Pagination from "react-js-pagination";
+// https://cotak.tistory.com/112 참고
+
+
 // 컴포넌트
 import Header from '../common/Header';
 import Footer from '../common/Footer';
@@ -26,19 +31,20 @@ const BoardList = () => {
         brdList: [],
         pageNum: 1,
         cntPerPage: 5,
+        totalPageCnt: 4
     });
 
     // 상태 추출
-    const { brdList, pageNum, cntPerPage } = state;
+    const { brdList, pageNum, cntPerPage, totalPageCnt } = state;
 
     // 게시글 목록 가져오기
-    const getBrdLast5 = () => {
-        axios.post(`http://${process.env.REACT_APP_API_URL}/board/getBrdListPaging`, {
-            params: {
-                pageNum,
-                cntPerPage
-            }
-        }).then((res) => {
+    const getBrdListPaging = () => {
+        const params = {
+            pageNum,
+            cntPerPage
+        }
+
+        axios.post(`http://${process.env.REACT_APP_API_URL}/board/getBrdListPaging`, params).then((res) => {
             lg(res.data)
             setState((prevState) => ({
                 ...prevState,
@@ -61,8 +67,8 @@ const BoardList = () => {
     }
 
     useEffect(() => {
-        getBrdLast5();
-    }, []);
+        getBrdListPaging();
+    }, [pageNum, cntPerPage]);
 
     const goDetail = (idx) => {
         navigate(`/board/detail/${idx}`); // 상세보기 페이지로 이동
@@ -115,7 +121,7 @@ const BoardList = () => {
 
                         <Stack spacing={2} className={st.pagination_wrap}>
                             <Pagination
-                                count={3}
+                                count={totalPageCnt}
                                 page={pageNum}
                                 onChange={handlePageChange}
                                 className={st.pagination}

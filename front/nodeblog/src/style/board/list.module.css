@@ -202,7 +202,7 @@
 
 .buttonStyle {
   margin-top: 20px;
-  background-color: #1abc9c;
+  background-color: #1abc9c !important;
   /* color: #ecf0f1; */
   width: 50%;
   align-self: center;
@@ -211,7 +211,7 @@
 }
 
 .buttonStyle:hover {
-  background-color: #e74c3c;
+  background-color: #e74c3c !important;
 }
 
 
@@ -226,7 +226,7 @@
 }
 
 .pagination :global(.Mui-selected) {
-  background-color: #1abc9c;
+  background-color: #1abc9c !important;
   color: #ffffff;
   font-weight: bold;
 }

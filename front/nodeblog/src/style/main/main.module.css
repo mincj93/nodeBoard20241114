@@ -329,3 +329,17 @@ body {
 .brdTable_cell_regid {
     width: 20%;
 }
+
+.comment_button {
+
+    margin-top: 20px !important;
+    background-color: #1abc9c !important;
+    color: #ecf0f1;
+    width: 50%;
+    align-self: center;
+
+    &:hover {
+        background-color: #e74c3c !important;
+    }
+
+}

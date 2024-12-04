@@ -116,16 +116,7 @@ const Main = () => {
               </TableBody>
             </Table>
           </TableContainer>
-          <Button variant="contained" sx={{
-            marginTop: '20px',
-            backgroundColor: '#1abc9c',
-            color: '#ecf0f1',
-            width: '50%',
-            alignSelf: 'center',
-            "&:hover": {
-              backgroundColor: '#e74c3c'
-            }
-          }} onClick={goCreate}>
+          <Button variant="contained" className={st.comment_button} onClick={goCreate}>
             Comment 작성하기
           </Button>
 

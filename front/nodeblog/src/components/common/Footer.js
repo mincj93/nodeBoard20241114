@@ -22,10 +22,10 @@ function Footer() {
     // 아이콘 및 팝업 데이터 정의
     const navItems = [
         {
-            label: 'Phone No.',
+            label: 'Phone',
             icon: <Icon_LocalPhone />,
             content: 'Phone: +82-10-1234-5zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz678',
-            text: 'Phone No.'
+            text: 'Phone'
         },
         {
             label: 'Comment',
@@ -52,19 +52,10 @@ function Footer() {
             <Box className={st.icons}>
                 {navItems.map((item, index) => {
                     return (
-                        <>
+                        <div key={index}>
                             <IconButton
-                                key={index}
                                 aria-label={item.label}
-                                sx={{
-                                    color: '#1abc9c',
-                                    transition: 'all 0.3s ease',
-                                    '&:hover': {
-                                        color: '#e74c3c',
-                                        transform: 'scale(1.1)',
-                                    },
-                                    // paddingLeft: '5px'
-                                }}
+                                className={st.icons_indivisual}
                                 onClick={() => handleOpen(item.label, item.content)} // 클릭 시 팝업 호출
                             >
                                 <Typography >
@@ -72,7 +63,7 @@ function Footer() {
                                 </Typography>
                                 {item.icon}
                             </IconButton>
-                        </>
+                        </div>
                     )
                 })}
             </Box>

@@ -9,9 +9,6 @@ const { stringify } = require('querystring');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-// -------------------------------------------------
-const mysqlConn = require(process.cwd() + '/server/mysql/mysqlConn');
-const query = require(process.cwd() + '/server/mysql/query/boardQuery')
 
 // -------------------------------------------------
 // express 설정

@@ -71,5 +71,6 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 source ~/.bashrc
 
 
-// Groq api키
-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
+
+// .env
+HOST 값을 aws ip주소로 할당하면 로컬pc 에서 서버를 기동해도 로컬서버에 로그가 안 찍힌다.

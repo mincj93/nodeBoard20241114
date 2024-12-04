@@ -25,18 +25,22 @@
 }
 
 /* 개별 아이콘 및 텍스트 스타일 */
-.icons li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    /* 아이콘과 텍스트 간격 */
+.icons_indivisual {
+
+    color: #ecf0f1 !important;
+    transition: all 0.3s ease !important;
+
+    &:hover {
+        color: #e74c3c !important;
+        transform: scale(1.1);
+    }
 }
 
 
 /* 팝업 스타일 */
 .popup_wrap {
-    background-color: #34495e;
-    color: #ecf0f1;
+    background-color: #34495e !important;
+    color: #ecf0f1 !important; 
     min-width: 300px;
     max-width: 500px;
     width: 90%;
@@ -61,12 +65,12 @@
 }
 
 .popup_close {
-    background-color: #1abc9c;
-    color: #ecf0f1;
+    background-color: #1abc9c !important;
+    color: #ecf0f1 !important;
     padding: 8px 20px;
 
     &:hover {
-        background-color: #e74c3c;
+        background-color: #e74c3c !important;
     }
 
 
