@@ -114,28 +114,31 @@ const BoardList = () => {
                         <div className={st.header_section}>
                             <h2 className={st.brdTable_title}>Comment List</h2>
                         </div>
-                        <div className={st.total_count}>
-                            <div className={st.total_count}>
-                                <Select value={srchSelect} onChange={onchangeSelect}>
-                                    <MenuItem value={''}>선택</MenuItem>
-                                    <MenuItem value={10}>Ten</MenuItem>
-                                    <MenuItem value={20}>Twenty</MenuItem>
-                                    <MenuItem value={30}>Thirty</MenuItem>
-                                </Select>
-                                <input
-                                    type="text"
-                                    value={srchTxt}
-                                    onChange={onchangeSrchTxt}
-                                    placeholder="검색어를 입력하세요."
-                                />
-                                <Button
-                                    variant="contained"
-                                    onClick={getBrdListPaging}
-                                // className={st.buttonStyle}
-                                >
-                                    검색
-                                </Button>
-                            </div>
+                        <div className={st.search_section}>
+                            <Select
+                                value={srchSelect}
+                                onChange={onchangeSelect}
+                                className={st.search_select}
+                            >
+                                <MenuItem value={''}>선택</MenuItem>
+                                <MenuItem value={10}>제목</MenuItem>
+                                <MenuItem value={20}>내용</MenuItem>
+                                <MenuItem value={30}>작성자</MenuItem>
+                            </Select>
+                            <input
+                                type="text"
+                                value={srchTxt}
+                                onChange={onchangeSrchTxt}
+                                placeholder="검색어를 입력하세요."
+                                className={st.search_input}
+                            />
+                            <Button
+                                variant="contained"
+                                onClick={getBrdListPaging}
+                                className={st.search_button}
+                            >
+                                검색
+                            </Button>
                         </div>
                         <div className={st.total_count}>
                             <div className={st.total_count}>총 {totalPageCnt}건</div>
