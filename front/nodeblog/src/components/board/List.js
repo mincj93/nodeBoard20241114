@@ -43,7 +43,7 @@ const BoardList = () => {
     const { brdList, srchSelect, srchTxt, pageNum, cntPerPage, totalPageCnt } = state;
 
     // 기능
-    // 게시글 목록 가져오기
+    // 검색
     const getBrdListPaging = () => {
         const params = {
             srchSelect,
@@ -128,6 +128,13 @@ const BoardList = () => {
                                     onChange={onchangeSrchTxt}
                                     placeholder="검색어를 입력하세요."
                                 />
+                                <Button
+                                    variant="contained"
+                                    onClick={getBrdListPaging}
+                                // className={st.buttonStyle}
+                                >
+                                    검색
+                                </Button>
                             </div>
                         </div>
                         <div className={st.total_count}>
