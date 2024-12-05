@@ -28,10 +28,10 @@ router.get('/getAllBrdList', async (요청, 응답) => {
 
 
 // 5개씩 페이징
-router.post('/getBrdListPaging', async (요청, 응답) => {
+router.post('/getBrdList', async (요청, 응답) => {
    lg('요청 == ', 요청.body);
-   const { pageNum, cntPerPage } = 요청.body;
-   const listData = await mysqlConn.connectDb(query.getBrdListPaging, [pageNum, cntPerPage]);
+   const { srchSelect, srchTxt, pageNum, pageSize } = 요청.body;
+   const listData = await mysqlConn.connectDb(query.getBrdList, [srchSelect, srchTxt, pageNum, pageSize]);
    lg('검색 결과 == ', listData)
    응답.send(listData);
 })

@@ -35,24 +35,24 @@ const BoardList = () => {
         srchTxt: '',
 
         pageNum: 1,
-        cntPerPage: 5,
+        pageSize: 5,
         totalPageCnt: 0,
     });
 
     // 상태 추출
-    const { brdList, srchSelect, srchTxt, pageNum, cntPerPage, totalPageCnt } = state;
+    const { brdList, srchSelect, srchTxt, pageNum, pageSize, totalPageCnt } = state;
 
     // 기능
     // 검색
-    const getBrdListPaging = () => {
+    const getBrdList = () => {
         const params = {
             srchSelect,
             srchTxt,
             pageNum,
-            cntPerPage
+            pageSize
         }
 
-        axios.post(`http://${process.env.REACT_APP_API_URL}/board/getBrdListPaging`, params).then((res) => {
+        axios.post(`http://${process.env.REACT_APP_API_URL}/board/getBrdList`, params).then((res) => {
             // TODO 프로시저를 통해서 총 개수와 목록을 받아옴. 근데 이중배열로 들어오기 때문에 좀 더 쉽게 찾도록 수정할 필요가 있다.
             lg('totalPageCnt == ', res.data[0][0].total_count)
             lg('brdList == ', res.data[1])
@@ -102,8 +102,8 @@ const BoardList = () => {
     };
 
     useEffect(() => {
-        getBrdListPaging();
-    }, [pageNum, cntPerPage]);
+        getBrdList();
+    }, [pageNum, pageSize]);
 
     return (
         <>
@@ -119,11 +119,12 @@ const BoardList = () => {
                                 value={srchSelect}
                                 onChange={onchangeSelect}
                                 className={st.search_select}
+                                displayEmpty={true} // select 값이 없을 때 빈 값의 표출값인 '전체' 표시
                             >
-                                <MenuItem value={''}>선택</MenuItem>
-                                <MenuItem value={10}>제목</MenuItem>
-                                <MenuItem value={20}>내용</MenuItem>
-                                <MenuItem value={30}>작성자</MenuItem>
+                                <MenuItem value={''}>전체</MenuItem>
+                                <MenuItem value={'1'}>제목</MenuItem>
+                                <MenuItem value={'2'}>내용</MenuItem>
+                                <MenuItem value={'3'}>작성자</MenuItem>
                             </Select>
                             <input
                                 type="text"
@@ -134,7 +135,7 @@ const BoardList = () => {
                             />
                             <Button
                                 variant="contained"
-                                onClick={getBrdListPaging}
+                                onClick={getBrdList}
                                 className={st.search_button}
                             >
                                 검색
@@ -181,7 +182,7 @@ const BoardList = () => {
                         <Stack spacing={2} className={st.pagination_wrap}>
                             <Pagination
                                 activePage={pageNum}
-                                itemsCountPerPage={cntPerPage}
+                                itemsCountPerPage={pageSize}
                                 totalItemsCount={totalPageCnt}
                                 pageRangeDisplayed={5}
                                 prevPageText={"‹"}
