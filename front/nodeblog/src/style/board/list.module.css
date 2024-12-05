@@ -34,6 +34,12 @@
   width: 100%;
 }
 
+.input_group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .total_count {
   color: #ecf0f1;
   font-size: 14px;

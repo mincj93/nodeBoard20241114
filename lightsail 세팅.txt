@@ -1,0 +1,154 @@
+LightSail setting
+(NginX 1.21.6-19 Image)
+
+
+///////////////////
+1. 고정IP 생성
+
+///////////////////
+2. 웹브라우저 SSH콘솔 접속
+
+  반드시 영문상태로 작업할 것, 타이핑이 안되면 한글 상태!
+  방향키 안먹으면 bash
+
+
+///////////////////
+3. 비밀번호 사용
+
+  https://www.funoracleapps.com/2021/03/how-to-enable-password-authentication.html
+  sudo vi /etc/ssh/sshd_config
+    PasswordAuthentication yes
+    PermitEmptyPasswords yes
+  sudo systemctl restart sshd
+
+
+///////////////////
+4. 루트사용자, 일반사용자 설정
+
+  sudo passwd root
+  su <= 루트로 로그인
+  .bashrc 편집
+
+  sudo useradd -m username
+  sudo passwd username
+
+
+///////////////////
+5. sudo에 등록 // 여기부터 mobaxterm 에 접속하기 위한 과정.
+
+  chmod 640 /etc/sudoers
+  vi /etc/sudoers
+    username ALL=(ALL:ALL) ALL    // 생성한 유저에게 모든 권한 허가하는 것.
+  chmod 440 /etc/sudoers
+  su - username
+
+  putty ssh 콘솔로 다시 로그인
+  https://nochoco-lee.tistory.com/350
+  chsh -s /bin/bash
+
+
+///////////////////
+6. 시스템로케일 (루트)
+  su
+  
+  sudo apt update -y
+  sudo apt upgrade -y
+
+  sudo apt-get install locales
+  sudo dpkg-reconfigure locales
+  #cat /etc/default/locale
+
+  https://inmile.tistory.com/4
+  #ls /usr/share/zoneinfo/Asia
+  sudo ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
+  date
+
+
+///////////////////
+7. npm,node,pm2 설치 (루트)
+  su
+
+  https://here4you.tistory.com/250
+  sudo apt-get install npm
+  sudo npm install n -g
+  sudo n 16.10
+  npm install -g pm2
+
+  node -v
+  npm -v
+  pm2 -v
+
+  로그아웃 후 다시 로그인
+  .bashrc 편집
+
+
+///////////////////
+8. softether vpn server 설치
+  su
+
+  sudo apt install -y build-essential
+  https://blog.kerus.net/913/setup-softether-vpn-server-on-aws-lightsail/
+  https://www.softether-download.com/en.aspx?product=softether
+  systemctl start vpnserver
+
+  방화벽풀기
+  TCP	443
+  TCP	992
+  TCP	1194
+  TCP	5555
+  UDP	500
+  UDP	1194
+  UDP	1701
+  UDP	1723
+  UDP	4500
+
+  https://blog.kerus.net/932/setup-softether-vpn-server-on-aws-lightsail-3/
+  https://www.softether-download.com/en.aspx?product=softether
+  softether vpn server-manager 설치
+  vpnAdmin dldptmvl1#%
+  vpn tap 추가 (탭이름을 vpn으로 하면, tap_vpn으로 추가된다.)
+
+  subnet 192.168.50.0 netmask 255.255.255.0 {
+    authoritative;
+    option domain-name "one.nodebreaker.link";
+    option domain-name-servers 8.8.8.8, 8.8.4.4;
+    option routers 192.168.50.1;
+    option subnet-mask 255.255.255.0;
+    range 192.168.50.2 192.168.50.254;
+  }
+
+  sudo /sbin/ifconfig tap_vpn 192.168.50.1 netmask 255.255.255.0
+  sudo iptables -t nat -A POSTROUTING -s 192.168.50.0/24 -j SNAT --to-source 172.26.3.0 (프라이빗아이피로설정)
+  sudo systemctl restart isc-dhcp-server
+
+
+  https://www.softether-download.com/en.aspx?product=softether
+  softether vpn client-manager 설치
+
+
+///////////////////
+9. mc 설치
+  https://ko.linux-console.net/?p=965#gsc.tab=0
+  https://midnight-commander.org/wiki/doc/faq
+  sudo apt-get install mc
+
+
+///////////////////
+10. 시스템정보확인
+
+  sudo hostnamectl set-hostname one.nodebreaker.link
+
+  서버명 확인
+  hostname
+    one.nodebreaker.link
+
+  OS 확인
+  uname -a
+    Linux one.nodebreaker.link 4.19.0-20-cloud-amd64 #1 SMP Debian 4.19.235-1 (2022-03-17) x86_64 GNU/Linux
+
+  메모리 용량 확인
+  cat /proc/meminfo | grep MemTotal
+    MemTotal: 16393304 kB
+
+  저장장치 확인
+  df

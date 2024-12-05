@@ -56,12 +56,6 @@ const Detail = () => {
         }));
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        // API 연동 로직 구현
-        navigate('/board/list');
-    };
-
 
     // 기능 함수
     const getBrdDtl = () => {
@@ -90,7 +84,8 @@ const Detail = () => {
         }
 
         await axios.post(`http://${process.env.REACT_APP_API_URL}/board/insertBrd`, params).then((res) => {
-            lg('성공 == ', res)
+            lg('성공 == ', res.data?.result)
+            navigate('/board/list');
         }).catch((err) => {
             lg('실패함')
         })
@@ -126,7 +121,7 @@ const Detail = () => {
                                 </div>
                                 <div className={st.info_item}>
                                     <label>등록일자:</label>
-                                    <span>{dayjs(detailData?.regdt).format('YYYY년 MM월 DD일 HH:mm:ss')}</span>
+                                    <span>{dayjs(detailData?.regdt).format('YYYY년 MM월 DD일')}</span>
                                 </div>
                             </div>
 

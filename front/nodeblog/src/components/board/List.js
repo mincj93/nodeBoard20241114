@@ -5,6 +5,8 @@ import dayjs from 'dayjs';
 
 // MUI Components
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Button, Paper } from '@mui/material';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 // import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
@@ -29,18 +31,23 @@ const BoardList = () => {
     // 상태
     const [state, setState] = useState({
         brdList: [],
+        srchSelect: '',
+        srchTxt: '',
+
         pageNum: 1,
         cntPerPage: 5,
         totalPageCnt: 0,
     });
 
     // 상태 추출
-    const { brdList, pageNum, cntPerPage, totalPageCnt } = state;
+    const { brdList, srchSelect, srchTxt, pageNum, cntPerPage, totalPageCnt } = state;
 
     // 기능
     // 게시글 목록 가져오기
     const getBrdListPaging = () => {
         const params = {
+            srchSelect,
+            srchTxt,
             pageNum,
             cntPerPage
         }
@@ -59,6 +66,22 @@ const BoardList = () => {
             .catch(() => {
                 lg('실패함')
             })
+    }
+
+    // 검색구분
+    const onchangeSelect = (e) => {
+        setState((prevState) => ({
+            ...prevState,
+            srchSelect: e.target.value,
+        }));
+    }
+
+    // 검색어
+    const onchangeSrchTxt = (e) => {
+        setState((prevState) => ({
+            ...prevState,
+            srchTxt: e.target.value,
+        }));
     }
 
     // 페이지 변경 함수
@@ -90,6 +113,22 @@ const BoardList = () => {
                     <div className={st.table_section}>
                         <div className={st.header_section}>
                             <h2 className={st.brdTable_title}>Comment List</h2>
+                        </div>
+                        <div className={st.total_count}>
+                            <div className={st.total_count}>
+                                <Select value={srchSelect} onChange={onchangeSelect}>
+                                    <MenuItem value={''}>선택</MenuItem>
+                                    <MenuItem value={10}>Ten</MenuItem>
+                                    <MenuItem value={20}>Twenty</MenuItem>
+                                    <MenuItem value={30}>Thirty</MenuItem>
+                                </Select>
+                                <input
+                                    type="text"
+                                    value={srchTxt}
+                                    onChange={onchangeSrchTxt}
+                                    placeholder="검색어를 입력하세요."
+                                />
+                            </div>
                         </div>
                         <div className={st.total_count}>
                             <div className={st.total_count}>총 {totalPageCnt}건</div>
