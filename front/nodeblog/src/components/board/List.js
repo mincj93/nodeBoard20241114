@@ -121,12 +121,12 @@ const BoardList = () => {
     // 엔터 키 입력 이벤트
     const pressEnter = (e) => {
         if (e.key === 'Enter') {
-            getBrdList();
+            getBrdList(true);
         }
     }
 
     useEffect(() => {
-        getBrdList(true);
+        getBrdList();
     }, [pageNum, pageSize]);
 
     return (
