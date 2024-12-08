@@ -61,6 +61,20 @@ router.post('/insertBrd', async (요청, 응답) => {
 })
 
 
+// 게시물 삭제
+router.post('/deleteBrd', async (요청, 응답) => {
+   lg('요청 == ', 요청.body);
+   const reqData = 요청.body;
+   try {
+      await mysqlConn.connectDb(boardQuery.deleteBrd, [reqData.idx]);
+      lg('게시물 삭제 성공')
+      응답.send({ result: 'success' });
+   } catch (err) {
+      lg('게시물 삭제 실패', err)
+      응답.send({ result: 'fail' });
+   }
+})
+
 
 
 

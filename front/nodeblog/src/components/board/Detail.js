@@ -103,8 +103,17 @@ const Detail = () => {
     }
 
     // 삭제
-    const postDelete = () => {
+    const postDelete = async () => {
         lg('postDelete', idx)
+        const params = {
+            idx
+        }
+        await axios.post(`http://${process.env.REACT_APP_API_URL}/board/deleteBrd`, params).then((res) => {
+            lg('삭제 성공 == ', res.data?.result)
+            navigate('/board/list');
+        }).catch(() => {
+            lg('삭제 실패')
+        })
     }
 
     // 취소

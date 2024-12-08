@@ -15,4 +15,7 @@ boardQuery.getBrdList = `CALL getBrdList(?, ?, ?, ?)`;
 // 게시물 등록
 boardQuery.insertBrd = `insert into board (title, content, regid) values (?, ?, ?)`;
 
+// 게시물 삭제
+boardQuery.deleteBrd = `delete from board where idx = ?`;
+
 module.exports = boardQuery;
