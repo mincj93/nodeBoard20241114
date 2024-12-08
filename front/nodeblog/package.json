@@ -6,7 +6,8 @@
     "@emotion/react": "^11.13.5",
     "@emotion/styled": "^11.13.5",
     "@mui/icons-material": "^6.1.8",
-    "@mui/material": "^6.1.8",
+    "@mui/material": "^6.1.10",
+    "@mui/x-date-pickers": "^7.23.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -25,7 +26,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "set \"BUILD_PATH=../../public/build\" && react-scripts build",
+    "_build설명": "윈도우의 경우 위처럼 빌드 경로를 지정해서 빌드 경로 변경 가능. 주의할 점은 빌드 시, 파일을 삭제하고 새로 생성함.",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

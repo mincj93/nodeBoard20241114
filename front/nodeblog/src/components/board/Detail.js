@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import dayjs from 'dayjs';
 
@@ -15,10 +15,13 @@ const Detail = () => {
     const lg = console.log;
     const usp = useParams(); // /board/:idx와 동일한 변수명으로 꺼내기 가능
     const navigate = useNavigate();
+    const location = useLocation();
+    const searchParams = location.state?.searchParams || '';
 
     // 상태
     const [state, setState] = useState({
         idx: usp?.idx,
+        isDisabled: false,
         detailData: {
             idx: '',
             title: '',
@@ -31,7 +34,7 @@ const Detail = () => {
     const [selectedFile, setSelectedFile] = useState(null);  // 추가: 파일 상태
 
     // 상태 추출
-    const { idx, detailData } = state;
+    const { idx, isDisabled, detailData } = state;
 
 
     // 상태 변경 함수들
@@ -77,6 +80,10 @@ const Detail = () => {
     // 저장
     const postSave = async () => {
         lg('postSave')
+        setState(prevState => ({
+            ...prevState,
+            isDisabled: true
+        }));
         const params = {
             title: detailData.title,
             content: detailData.content,
@@ -88,12 +95,25 @@ const Detail = () => {
             navigate('/board/list');
         }).catch((err) => {
             lg('실패함')
+            setState(prevState => ({
+                ...prevState,
+                isDisabled: false
+            }));
         })
     }
 
     // 취소
     const onCancel = () => {
-        navigate(-1);
+        navigate('/board/list', {
+            state: {
+                searchParams
+            }
+        });
+    };
+
+    // 목록
+    const goToList = () => {
+        navigate('/board/list');
     };
 
     // 파일 선택 핸들러 추가
@@ -102,6 +122,7 @@ const Detail = () => {
     };
 
     useEffect(() => {
+        lg('검색 조건:', searchParams);
         getBrdDtl();
     }, [idx])
 
@@ -168,17 +189,22 @@ const Detail = () => {
                                     )}
                                 </div>
                             </div> */}
-                            <div className={st.button_group}>
-                                <button className={st.submit_button} onClick={postSave}>
-                                    작성완료
+                            <div className={st.buttons_container}>
+                                <button className={st.list_button} onClick={goToList}>
+                                    목록
                                 </button>
-                                <button
-                                    type="button"
-                                    className={st.cancel_button}
-                                    onClick={onCancel}
-                                >
-                                    취소
-                                </button>
+                                <div className={st.right_buttons}>
+                                    <button className={st.submit_button} onClick={postSave} disabled={isDisabled}>
+                                        작성완료
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className={st.cancel_button}
+                                        onClick={onCancel}
+                                    >
+                                        취소
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>

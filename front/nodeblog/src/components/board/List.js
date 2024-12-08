@@ -27,6 +27,7 @@ const BoardList = () => {
     const lg = console.log;
     const navigate = useNavigate();
 
+    // lg(`props == `, props)
 
     // 상태
     const [state, setState] = useState({
@@ -44,11 +45,18 @@ const BoardList = () => {
 
     // 기능
     // 검색
-    const getBrdList = () => {
+    const getBrdList = (isClick) => {
+        if (isClick) {
+            // 검색버튼 통한 검색을 실행 시 1페이지로 이동
+            setState((prevState) => ({
+                ...prevState,
+                pageNum: 1
+            }));
+        }
         const params = {
             srchSelect,
             srchTxt,
-            pageNum,
+            pageNum: isClick ? 1 : pageNum,
             pageSize
         }
 
@@ -93,16 +101,32 @@ const BoardList = () => {
         }));
     }
 
-    const goDetail = (idx) => {
-        navigate(`/board/detail/${idx}`); // 상세보기 페이지로 이동
+    const goToDetail = (idx) => {
+        navigate(`/board/detail/${idx}`, {
+            state: {
+                searchParams: {
+                    srchSelect,
+                    srchTxt,
+                    pageNum,
+                    // 필요한 다른 검색 조건들도 추가
+                }
+            }
+        });
     };
 
     const goCreate = () => {
         navigate('/board/write'); // 작성 페이지로 이동
     };
 
+    // 엔터 키 입력 이벤트
+    const pressEnter = (e) => {
+        if (e.key === 'Enter') {
+            getBrdList();
+        }
+    }
+
     useEffect(() => {
-        getBrdList();
+        getBrdList(true);
     }, [pageNum, pageSize]);
 
     return (
@@ -123,8 +147,7 @@ const BoardList = () => {
                             >
                                 <MenuItem value={''}>전체</MenuItem>
                                 <MenuItem value={'1'}>제목</MenuItem>
-                                <MenuItem value={'2'}>내용</MenuItem>
-                                <MenuItem value={'3'}>작성자</MenuItem>
+                                <MenuItem value={'2'}>작성자</MenuItem>
                             </Select>
                             <input
                                 type="text"
@@ -132,10 +155,11 @@ const BoardList = () => {
                                 onChange={onchangeSrchTxt}
                                 placeholder="검색어를 입력하세요."
                                 className={st.search_input}
+                                onKeyUp={pressEnter}
                             />
                             <Button
                                 variant="contained"
-                                onClick={getBrdList}
+                                onClick={() => getBrdList(true)}
                                 className={st.search_button}
                             >
                                 검색
@@ -160,19 +184,25 @@ const BoardList = () => {
                                     <TableRow>
                                         <TableCell>번호</TableCell>
                                         <TableCell>제목</TableCell>
-                                        <TableCell>작성일</TableCell>
                                         <TableCell>작성자</TableCell>
+                                        <TableCell>작성일</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody className={st.brdTable_body}>
-                                    {brdList.map((row, idx) => (
+                                    {brdList.length > 0 ? (brdList.map((row, idx) => (
                                         <TableRow key={idx} className={st.brdTable_row}>
                                             <TableCell className={st.brdTable_cell_idx}>{idx + 1}</TableCell>
-                                            <TableCell className={st.brdTable_cell_title} onClick={() => goDetail(row.idx)}>{row.title}</TableCell>
-                                            <TableCell className={st.brdTable_cell_regdt}>{dayjs(row.regdt).format('YYYY-MM-DD')}</TableCell>
+                                            <TableCell className={st.brdTable_cell_title} onClick={() => goToDetail(row.idx)}>{row.title}</TableCell>
                                             <TableCell className={st.brdTable_cell_regid}>{row.regid}</TableCell>
+                                            <TableCell className={st.brdTable_cell_regdt}>{dayjs(row.regdt).format('YYYY-MM-DD')}</TableCell>
                                         </TableRow>
-                                    ))}
+                                    ))) : (
+                                        <TableRow>
+                                            <TableCell colSpan={4} style={{ textAlign: 'center', padding: '30px 0', height: '300px' }}>
+                                                검색결과가 없습니다.
+                                            </TableCell>
+                                        </TableRow>
+                                    )}
                                 </TableBody>
                             </Table>
 

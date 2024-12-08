@@ -98,8 +98,8 @@ const Main = () => {
                 <TableRow>
                   <TableCell>번호</TableCell>
                   <TableCell>제목</TableCell>
-                  <TableCell>작성일</TableCell>
                   <TableCell>작성자</TableCell>
+                  <TableCell>작성일</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody className={st.brdTable_body}>
@@ -107,8 +107,8 @@ const Main = () => {
                   <TableRow key={idx} className={st.brdTable_row}>
                     <TableCell className={st.brdTable_cell_idx}>{idx + 1}</TableCell>
                     <TableCell className={st.brdTable_cell_title} onClick={() => goDetail(row.idx)}>{row.title}</TableCell>
-                    <TableCell className={st.brdTable_cell_regdt}>{dayjs(row.regdt).format('YYYY-MM-DD')}</TableCell>
                     <TableCell className={st.brdTable_cell_regid}>{row.regid}</TableCell>
+                    <TableCell className={st.brdTable_cell_regdt}>{dayjs(row.regdt).format('YYYY-MM-DD')}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

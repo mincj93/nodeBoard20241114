@@ -1,27 +1,33 @@
-/* 전역 스타일 설정 */
+/* 전역 스타일 수정 */
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
-body {
+body, html {
     margin: 0;
     padding: 0;
-    min-height: 100vh;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
 }
 
 #root {
+    /* min-height: 100vh; */
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    padding-top: 80px;
+    box-sizing: border-box;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 /* 메인 콘텐츠 영역 */
 main, 
 .mainWrap,
 .banner_content {
-    flex: 1;
+    /* flex: 1; */
     display: flex;
     flex-direction: column;
 }

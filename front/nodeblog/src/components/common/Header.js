@@ -11,6 +11,7 @@ import HomeIcon from '@mui/icons-material/Home';
 // import { useScrollToTop } from '../../hooks/useScrollToTop';
 
 function Header() {
+  window.scrollTo(0, 0);
   // useScrollToTop();
   /*
     <Route path="/" element={<Main />} />

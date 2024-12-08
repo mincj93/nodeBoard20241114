@@ -1,7 +1,7 @@
 // -------------------------------------------------
 // reactmoduels import
 import logo from './logo.svg';
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, Navigate } from "react-router-dom";
 
 import './App.css';
 
@@ -31,6 +31,9 @@ function App() {
         <Route path="write" element={<BrdDetail />} />
         <Route path="detail/:idx" element={<BrdDetail />} />
       </Route>
+
+      {/* 없는 페이지 호출 시 메인으로 보내기 */}
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }
