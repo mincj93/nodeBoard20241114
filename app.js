@@ -21,10 +21,26 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 
+// 세션 설정 필요요소
+const session = require('express-session')
+const passport = require('passport')
+const LocalStrategy = require('passport-local')
+
+app.use(passport.initialize())
+app.use(session({
+    secret: 'AlsCkd!@34', // 이 비밀번호 털리면 내 사이트 털림
+    resave: false, // 서버에 요청시마다 갱신할 것인지? (보통 false)
+    saveUninitialized: false // 로그인 안 해도 세션을 생성할지? (보통 false)
+}))
+
+app.use(passport.session())
+// 세션 설정 필요요소 끝
+
+
 // 라우터 분리 설정
 app.use('/main', routerController.mainRouter)
 app.use('/board', routerController.boardRouter)
-app.use('/user', routerController.userRouter)
+app.use('/auth', routerController.authRouter(passport, LocalStrategy))
 
 // app.set('view engine', 'ejs');
 // app.engine('html', require('ejs').renderFile);

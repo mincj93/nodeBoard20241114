@@ -102,6 +102,11 @@ const Detail = () => {
         })
     }
 
+    // 삭제
+    const postDelete = () => {
+        lg('postDelete', idx)
+    }
+
     // 취소
     const onCancel = () => {
         navigate('/board/list', {
@@ -140,11 +145,15 @@ const Detail = () => {
                             {/* 작성자와 등록일자 추가 */}
                             <div className={st.info_group}>
                                 <div className={st.info_item}>
+                                    <label>게시번호 :</label>
+                                    <span>{detailData?.idx}</span>
+                                </div>
+                                <div className={st.info_item}>
                                     <label>작성자:</label>
                                     <span>{detailData?.regid}</span>
                                 </div>
                                 <div className={st.info_item}>
-                                    <label>등록일자:</label>
+                                    <label>등록일자 :</label>
                                     <span>{dayjs(detailData?.regdt).format('YYYY년 MM월 DD일')}</span>
                                 </div>
                             </div>
@@ -206,6 +215,13 @@ const Detail = () => {
                                         onClick={onCancel}
                                     >
                                         취소
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className={st.cancel_button}
+                                        onClick={postDelete}
+                                    >
+                                        삭제
                                     </button>
                                 </div>
                             </div>

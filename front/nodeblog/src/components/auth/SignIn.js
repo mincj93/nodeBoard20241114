@@ -4,17 +4,25 @@ import Footer from '../common/Footer';
 import { TextField, Button, Paper } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import st from '../../style/auth/signin.module.css';
+import axios from 'axios';
+
 
 const SignIn = () => {
+    const lg = console.log;
     const navigate = useNavigate();
-    const [formData, setFormData] = useState({
+
+    // 상태
+    const [state, setState] = useState({
         username: '',
         password: ''
     });
 
+    // 상태 추출
+    const { username, password } = state;
+
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prevState => ({
+        setState(prevState => ({
             ...prevState,
             [name]: value
         }));
@@ -23,7 +31,21 @@ const SignIn = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // TODO: 로그인 로직 구현
-        console.log('로그인 시도:', formData);
+        console.log('로그인 시도:', username, password);
+
+        
+        const params = {
+            username,
+            password
+        }
+
+        axios.post(`http://${process.env.REACT_APP_API_URL}/auth/login`, params).then((res) => {
+            const resData = res.data;
+            lg('로그인 시도 9 = ', resData)
+        })
+            .catch(() => {
+                lg('실패함')
+            })
     };
 
     return (
@@ -40,7 +62,7 @@ const SignIn = () => {
                                 variant="outlined"
                                 fullWidth
                                 margin="normal"
-                                value={formData.username}
+                                value={username}
                                 onChange={handleChange}
                                 sx={{
                                     '& .MuiOutlinedInput-root': {
@@ -66,7 +88,7 @@ const SignIn = () => {
                                 variant="outlined"
                                 fullWidth
                                 margin="normal"
-                                value={formData.password}
+                                value={password}
                                 onChange={handleChange}
                                 sx={{
                                     '& .MuiOutlinedInput-root': {
