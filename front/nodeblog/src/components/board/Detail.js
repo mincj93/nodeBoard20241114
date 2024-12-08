@@ -67,7 +67,7 @@ const Detail = () => {
         }
 
         axios.post(`http://${process.env.REACT_APP_API_URL}/board/getBrdDtl`, params).then((res) => {
-            lg(res.data[0])
+            // lg(res.data[0])
             setState((prevState) => ({
                 ...prevState,
                 detailData: res.data[0]
@@ -113,7 +113,11 @@ const Detail = () => {
 
     // 목록
     const goToList = () => {
-        navigate('/board/list');
+        navigate('/board/list', {
+            state: {
+                searchParams
+            }
+        });
     };
 
     // 파일 선택 핸들러 추가
@@ -122,7 +126,6 @@ const Detail = () => {
     };
 
     useEffect(() => {
-        lg('검색 조건:', searchParams);
         getBrdDtl();
     }, [idx])
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import dayjs from 'dayjs';
 
@@ -26,16 +26,17 @@ import st from '../../style/board/list.module.css';
 const BoardList = () => {
     const lg = console.log;
     const navigate = useNavigate();
-
+    const location = useLocation();
+    const searchParams = location.state?.searchParams || '';
     // lg(`props == `, props)
 
     // 상태
     const [state, setState] = useState({
         brdList: [],
-        srchSelect: '',
-        srchTxt: '',
+        srchSelect: searchParams.srchSelect || '',
+        srchTxt: searchParams.srchTxt || '',
 
-        pageNum: 1,
+        pageNum: searchParams.pageNum || 1,
         pageSize: 5,
         totalPageCnt: 0,
     });
@@ -45,25 +46,27 @@ const BoardList = () => {
 
     // 기능
     // 검색
-    const getBrdList = (isClick) => {
-        if (isClick) {
+    const getBrdList = (isNewSearch) => {
+        if (isNewSearch) {
             // 검색버튼 통한 검색을 실행 시 1페이지로 이동
             setState((prevState) => ({
                 ...prevState,
                 pageNum: 1
             }));
+            lg('1 페이지 검색')
         }
+
         const params = {
             srchSelect,
             srchTxt,
-            pageNum: isClick ? 1 : pageNum,
+            pageNum: isNewSearch ? 1 : pageNum,
             pageSize
         }
 
         axios.post(`http://${process.env.REACT_APP_API_URL}/board/getBrdList`, params).then((res) => {
             // TODO 프로시저를 통해서 총 개수와 목록을 받아옴. 근데 이중배열로 들어오기 때문에 좀 더 쉽게 찾도록 수정할 필요가 있다.
-            lg('totalPageCnt == ', res.data[0][0].total_count)
-            lg('brdList == ', res.data[1])
+            // lg('totalPageCnt == ', res.data[0][0].total_count)
+            // lg('brdList == ', res.data[1])
             const resData = res.data;
             setState((prevState) => ({
                 ...prevState,
@@ -94,7 +97,7 @@ const BoardList = () => {
 
     // 페이지 변경 함수
     const onChangePageNum = (page) => {
-        lg('페이지 변경 번호 == ', page)
+        // lg('페이지 변경 번호 == ', page)
         setState((prevState) => ({
             ...prevState,
             pageNum: page
