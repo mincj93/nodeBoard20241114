@@ -2,12 +2,12 @@
 const express = require('express');
 const path = require('path')
 const router = express.Router();
+const mysqlConn = require(process.cwd() + '/server/mysql/mysqlConn');
 const boardQuery = require(process.cwd() + '/server/mysql/query/boardQuery')
 
 // -------------------------------------------------
 // 기능함수
 const lg = console.log;
-const mysqlConn = require(process.cwd() + '/server/mysql/mysqlConn');
 
 // 최신 등록 5개
 router.get('/getBrdLast5', async (요청, 응답) => {

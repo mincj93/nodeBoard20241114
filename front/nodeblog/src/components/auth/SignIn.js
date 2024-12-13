@@ -13,12 +13,12 @@ const SignIn = () => {
 
     // 상태
     const [state, setState] = useState({
-        username: '',
-        password: ''
+        userId: '',
+        userPw: ''
     });
 
     // 상태 추출
-    const { username, password } = state;
+    const { userId, userPw } = state;
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -31,12 +31,12 @@ const SignIn = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // TODO: 로그인 로직 구현
-        console.log('로그인 시도:', username, password);
+        console.log('로그인 시도:', userId, userPw);
 
-        
+
         const params = {
-            username,
-            password
+            userId,
+            userPw
         }
 
         axios.post(`http://${process.env.REACT_APP_API_URL}/auth/login`, params).then((res) => {
@@ -48,6 +48,21 @@ const SignIn = () => {
             })
     };
 
+    const sessionCreate = () => {
+        lg('123')
+        const params = {
+            userId,
+            userPw
+        }
+        axios.post(`http://${process.env.REACT_APP_API_URL}/auth/sessionCreate`, params).then((res) => {
+            const resData = res.data;
+            lg('로그인 시도 9 = ', resData)
+        })
+            .catch(() => {
+                lg('실패함')
+            })
+    }
+
     return (
         <div className={st.mainWrap}>
             <Header />
@@ -57,12 +72,12 @@ const SignIn = () => {
                         <h2>로그인</h2>
                         <form onSubmit={handleSubmit}>
                             <TextField
-                                name="username"
+                                name="userId"
                                 label="아이디"
                                 variant="outlined"
                                 fullWidth
                                 margin="normal"
-                                value={username}
+                                value={userId}
                                 onChange={handleChange}
                                 sx={{
                                     '& .MuiOutlinedInput-root': {
@@ -82,13 +97,13 @@ const SignIn = () => {
                                 }}
                             />
                             <TextField
-                                name="password"
+                                name="userPw"
                                 label="비밀번호"
                                 type="password"
                                 variant="outlined"
                                 fullWidth
                                 margin="normal"
-                                value={password}
+                                value={userPw}
                                 onChange={handleChange}
                                 sx={{
                                     '& .MuiOutlinedInput-root': {
@@ -135,6 +150,21 @@ const SignIn = () => {
                                 onClick={() => navigate('/auth/signup')}
                             >
                                 회원가입
+                            </Button>
+                            <Button
+                                type="submit"
+                                variant="contained"
+                                fullWidth
+                                sx={{
+                                    marginTop: '20px',
+                                    backgroundColor: '#1abc9c',
+                                    '&:hover': {
+                                        backgroundColor: '#e74c3c',
+                                    },
+                                }}
+                                onClick={sessionCreate}
+                            >
+                                세션테스트
                             </Button>
                         </form>
                     </Paper>

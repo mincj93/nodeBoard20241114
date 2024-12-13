@@ -53,7 +53,7 @@ const BoardList = () => {
                 ...prevState,
                 pageNum: 1
             }));
-            lg('1 페이지 검색')
+            // lg('1 페이지 검색')
         }
 
         const params = {
@@ -74,7 +74,7 @@ const BoardList = () => {
                 brdList: resData[1],
             }));
         })
-            .catch(() => {
+            .catch((err) => {
                 lg('목록조회 실패')
             })
     }
