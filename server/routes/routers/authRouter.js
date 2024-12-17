@@ -1,60 +1,16 @@
 // -------------------------------------------------
-// 내장함수
+const dayjs = require('dayjs');
 const express = require('express');
-const session = require('express-session')
+const session = require('express-session');
 const router = express.Router();
 
 
 const app = express();
 
-// 세션 설정 필요요소
-// const session = require('express-session')
-const passport = require('passport')
-const LocalStrategy = require('passport-local')
-
-app.use(passport.initialize())
-app.use(session({
-    secret: process.env.SESSIONSCRTKEY, // 이 비밀번호 털리면 내 사이트 털림
-    resave: false, // 서버에 요청시마다 갱신할 것인지? (보통 false)
-    saveUninitialized: false, // 로그인 안 해도 세션을 생성할지? (보통 false)
-    cookie : { maxAge : 1 * 60 * 1000 }
-}))
-
-app.use(passport.session())
-// 세션 설정 필요요소 끝
-
-
-passport.serializeUser((user, done) => {
-    lg('serializeUser');
-    process.nextTick(() => {
-        done(null, { id: user._id, username: user.username })
-    })
-})
-
-
-passport.deserializeUser((user, done) => {
-    lg('deserializeUser');
-    process.nextTick(() => {
-        return done(null, user)
-    })
-})
-
-passport.use(new LocalStrategy(async (입력한아이디, 입력한비번, cb) => {
-
-    const userInfo = await mysqlConn.connectDb(authQuery.checkUserId, [입력한아이디, 입력한비번]);
-    lg('userInfo == ', userInfo)
-    if (!userInfo) {
-        return cb(null, false, { message: '아이디 DB에 없음' })
-    }
-    if (userInfo.pworg == 입력한비번) {
-        return cb(null, result)
-    } else {
-        return cb(null, false, { message: '비번불일치' });
-    }
-}))
+// JSON 파싱 미들웨어 추가 (req.body를 사용하려면 필요)
+app.use(express.json());
 
 // -------------------------------------------------
-// 기능함수
 const mysqlConn = require(process.cwd() + '/server/mysql/mysqlConn');
 const authQuery = require(process.cwd() + '/server/mysql/query/authQuery');
 
@@ -62,49 +18,61 @@ const authQuery = require(process.cwd() + '/server/mysql/query/authQuery');
 // 변수들
 const lg = console.log;
 
-app.use(session({
-    secret: 'AlsCkd!@34', // 이 비밀번호 털리면 내 사이트 털림
-    resave: false, // 서버에 요청시마다 갱신할 것인지? (보통 false)
-    saveUninitialized: false // 로그인 안 해도 세션을 생성할지? (보통 false)
-}))
-
 // 아이디 존재 여부 확인
 const checkUser = async (inputId, inputPw) => {
-    lg('아이디 존재 여부 확인 시도 = ', inputId, inputPw)
+    lg('아이디 존재 여부 확인 시도 = ', inputId, inputPw);
     const userInfo = await mysqlConn.connectDb(authQuery.checkUserId, [inputId, inputPw]);
-    lg('userinfo = ', userInfo)
+    lg('userinfo = ', userInfo);
     return userInfo;
-}
+};
 
-
-// 로그인
-router.post('/login', (req, res, next) => {
-
-});
-
-// 로그인
+// 로그인 처리 라우트
 router.post('/sessionCreate', async (req, res, next) => {
-    //세션 테스트
-    const reqData = req.body;
-    lg('reqData == ', reqData)
+    try {
+        const { userId, userPw } = req.body;
 
-    const userInfo = await checkUser(reqData.userId, reqData.userPw);
+        // 사용자 확인
+        const userInfo = await checkUser(userId, userPw);
+        lg('userInfo =======-=-=-==', userInfo);
 
-    lg('userInfo == ', userInfo)
+        if (userInfo && userInfo.length > 0) {
+            // 사용자 인증 성공
+            // 세션에 사용자 정보 저장
+            req.session.user = {
+                name: userInfo[0].name, // 필요한 정보 추가
+                id: userInfo[0].id, // 예: 관리자, 일반 사용자 등
+                compNm: userInfo[0].compNm
+            };
 
-    passport.authenticate('local', (error, user, info) => {
-        if (error) return res.status(500).json(error)
-        lg(error,info)
-        if (!user) return res.status(401).json(info.message)
-            lg('req == ' , req)
-        req.logIn(user, (err) => {
-            if (err) return next(err)
+            lg('세션 생성 완료: ', 234);
+            lg('세션 생성 완료: ', req.session.user);
 
-            lg('유저존재 확인. user ==', user);
-        })
-    })(req, res, next)
+            // 성공 응답
+            
+            console.log('세션 데이터:', req.session);
+            console.log('세션 데이터:', dayjs(req.session.cookie._expires).format('YYYY MM DD hh:mm:ss')); 
+            res.status(200).json({
+                success: true,
+                message: '로그인 성공',
+                session: req.session.user
+            });
+        } else {
+            // 사용자 인증 실패
+            res.status(401).json({
+                success: false,
+                message: '아이디 또는 비밀번호가 잘못되었습니다.'
+            });
+        }
+    } catch (error) {
+        lg('로그인 처리 중 에러 발생: ', error);
 
+        // 에러 응답
+        res.status(500).json({
+            success: false,
+            message: '서버 에러가 발생했습니다.',
+            error: error.message
+        });
+    }
 });
-
 
 module.exports = router;

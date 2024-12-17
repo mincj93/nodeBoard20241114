@@ -30,7 +30,6 @@ const SignIn = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // TODO: 로그인 로직 구현
         console.log('로그인 시도:', userId, userPw);
 
 
@@ -70,103 +69,101 @@ const SignIn = () => {
                 <div className={st.signin_container}>
                     <Paper className={st.signin_paper}>
                         <h2>로그인</h2>
-                        <form onSubmit={handleSubmit}>
-                            <TextField
-                                name="userId"
-                                label="아이디"
-                                variant="outlined"
-                                fullWidth
-                                margin="normal"
-                                value={userId}
-                                onChange={handleChange}
-                                sx={{
-                                    '& .MuiOutlinedInput-root': {
-                                        '& fieldset': {
-                                            borderColor: '#1abc9c',
-                                        },
-                                        '&:hover fieldset': {
-                                            borderColor: '#e74c3c',
-                                        },
+                        <TextField
+                            name="userId"
+                            label="아이디"
+                            variant="outlined"
+                            fullWidth
+                            margin="normal"
+                            value={userId}
+                            onChange={handleChange}
+                            sx={{
+                                '& .MuiOutlinedInput-root': {
+                                    '& fieldset': {
+                                        borderColor: '#1abc9c',
                                     },
-                                    '& .MuiInputLabel-root': {
-                                        color: '#ecf0f1',
+                                    '&:hover fieldset': {
+                                        borderColor: '#e74c3c',
                                     },
-                                    '& .MuiOutlinedInput-input': {
-                                        color: '#ecf0f1',
+                                },
+                                '& .MuiInputLabel-root': {
+                                    color: '#ecf0f1',
+                                },
+                                '& .MuiOutlinedInput-input': {
+                                    color: '#ecf0f1',
+                                },
+                            }}
+                        />
+                        <TextField
+                            name="userPw"
+                            label="비밀번호"
+                            type="password"
+                            variant="outlined"
+                            fullWidth
+                            margin="normal"
+                            value={userPw}
+                            onChange={handleChange}
+                            sx={{
+                                '& .MuiOutlinedInput-root': {
+                                    '& fieldset': {
+                                        borderColor: '#1abc9c',
                                     },
-                                }}
-                            />
-                            <TextField
-                                name="userPw"
-                                label="비밀번호"
-                                type="password"
-                                variant="outlined"
-                                fullWidth
-                                margin="normal"
-                                value={userPw}
-                                onChange={handleChange}
-                                sx={{
-                                    '& .MuiOutlinedInput-root': {
-                                        '& fieldset': {
-                                            borderColor: '#1abc9c',
-                                        },
-                                        '&:hover fieldset': {
-                                            borderColor: '#e74c3c',
-                                        },
+                                    '&:hover fieldset': {
+                                        borderColor: '#e74c3c',
                                     },
-                                    '& .MuiInputLabel-root': {
-                                        color: '#ecf0f1',
-                                    },
-                                    '& .MuiOutlinedInput-input': {
-                                        color: '#ecf0f1',
-                                    },
-                                }}
-                            />
-                            <Button
-                                type="submit"
-                                variant="contained"
-                                fullWidth
-                                sx={{
-                                    marginTop: '20px',
-                                    backgroundColor: '#1abc9c',
-                                    '&:hover': {
-                                        backgroundColor: '#e74c3c',
-                                    },
-                                }}
-                            >
-                                로그인
-                            </Button>
-                            <Button
-                                type="submit"
-                                variant="contained"
-                                fullWidth
-                                sx={{
-                                    marginTop: '20px',
-                                    backgroundColor: '#1abc9c',
-                                    '&:hover': {
-                                        backgroundColor: '#e74c3c',
-                                    },
-                                }}
-                                onClick={() => navigate('/auth/signup')}
-                            >
-                                회원가입
-                            </Button>
-                            <Button
-                                type="submit"
-                                variant="contained"
-                                fullWidth
-                                sx={{
-                                    marginTop: '20px',
-                                    backgroundColor: '#1abc9c',
-                                    '&:hover': {
-                                        backgroundColor: '#e74c3c',
-                                    },
-                                }}
-                                onClick={sessionCreate}
-                            >
-                                세션테스트
-                            </Button>
-                        </form>
+                                },
+                                '& .MuiInputLabel-root': {
+                                    color: '#ecf0f1',
+                                },
+                                '& .MuiOutlinedInput-input': {
+                                    color: '#ecf0f1',
+                                },
+                            }}
+                        />
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            fullWidth
+                            sx={{
+                                marginTop: '20px',
+                                backgroundColor: '#1abc9c',
+                                '&:hover': {
+                                    backgroundColor: '#e74c3c',
+                                },
+                            }}
+                        >
+                            로그인
+                        </Button>
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            fullWidth
+                            sx={{
+                                marginTop: '20px',
+                                backgroundColor: '#1abc9c',
+                                '&:hover': {
+                                    backgroundColor: '#e74c3c',
+                                },
+                            }}
+                            onClick={() => navigate('/auth/signup')}
+                        >
+                            회원가입
+                        </Button>
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            fullWidth
+                            sx={{
+                                marginTop: '20px',
+                                backgroundColor: '#1abc9c',
+                                '&:hover': {
+                                    backgroundColor: '#e74c3c',
+                                },
+                            }}
+                            onClick={sessionCreate}
+                        >
+                            세션테스트
+                        </Button>
                     </Paper>
                 </div>
             </div>
